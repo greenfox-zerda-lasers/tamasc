@@ -10,3 +10,7 @@ p {
 #last {
   border-bottom: 0px;
 }
+
+p:hover {
+  background: coral;
+}
