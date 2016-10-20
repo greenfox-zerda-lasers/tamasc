@@ -1,0 +1,24 @@
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: rgb(255, 200, 51);
+}
+
+ul {
+  color:blue;
+  list-style-type: square;
+}
+
+.fru {
+  list-style-type: disc;
+}
+
+li li {
+  color: black;
+}
+
+#apple{
+  color: red;
+}
