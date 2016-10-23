@@ -25,9 +25,16 @@ header h1, header h2{
   font-weight:normal;
 }
 
+h2{
+font-size: 25px;
+margin: 40px 0px;
+letter-spacing: 0.1em;
+}
+
 header h2{
   font-size: 34px;
   line-height:34px;
+  letter-spacing: normal;
 }
 
 h1{
@@ -35,11 +42,7 @@ h1{
   line-height:73px;
 }
 
-h2{
-font-size: 27px;
-margin: 40px 0px;
-font-stretch: semi-expanded;
-}
+
 
 h3{
   margin-top: 30px;
@@ -63,7 +66,8 @@ ul{
 
 li{
   list-style-type: square;
-  font-size: 17px;
+  font-size: 16px;
+  line-height: 1.4em;
 }
 
 #intro li {
@@ -93,7 +97,7 @@ li{
 
 hr {
     border: none;
-    height: 4px;
+    height: 3px;
     background-color: rgb(34,34,34);
     margin-top: 40px;
 }
