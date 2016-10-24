@@ -1,0 +1,11 @@
+img{
+  float:right;
+}
+section:first-of-type img{
+  float:left;
+}
+section{
+  border-bottom: 2px solid black;
+  max-width: 300px;
+  text-align: justify;
+}
