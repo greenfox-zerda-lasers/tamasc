@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <form>
+    <h1>Profil</h1>
+    <div class="up-wrap">
+      <div class="szemelyes">
+        <h1>Személyes adatok</h1>
+        <div class="alapadatok">
+              <p>
+                  <label for="nev">Név</label>
+                  <input type="name" name="nev" id="nev" placeholder="Jóska">
+              </p>
+              <div class="radios">
+                <div class="szul">
+                    <label for="szulev">Születési éved</label>
+                    <input type="number" name="szulev" id="szulev" placeholder="pl. 1985">
+                </div>
+                <div class="nem">
+                  <p>
+                      <label for="ferfi">Férfi</label>
+                      <input type="radio" id="ferfi" value="ferfi" name="nem">
+                  </p>
+                  <p>
+                      <label for="no">Nő</label>
+                      <input type="radio" id="no" value="no" name="nem">
+                  </p>
+                </div>
+
+              </div>
+          </div>
+        <div class="markak">
+          <p>Milyen márkákat szeretsz?</p>
+          <div class="lista">
+            <div>
+                <p>
+                    <input type="checkbox" id="adidas" value="adidas">
+                    <label for="adidas">Adidas</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="apple" value="apple">
+                    <label for="apple">Apple</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="coca-cola" value="coca-cola">
+                    <label for="coca-cola">Coca-cola</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="mazda" value="mazda">
+                    <label for="mazda">Mazda</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="nike" value="nike">
+                    <label for="nike">Nike</label>
+                </p>
+            </div>
+            <div>
+                <p>
+                    <input type="checkbox" id="opel" value="opel">
+                    <label for="opel">Opel</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="ray-ban" value="ray-ban">
+                    <label for="ray-ban">Ray-Ban</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="starbucks" value="starbucks">
+                    <label for="starbucks">Starbucks</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="tesla" value="tesla">
+                    <label for="tesla">Tesla</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="yahoo" value="yahoo">
+                    <label for="yahoo">Yahoo</label>
+                </p>
+            </div>
+          </div>
+
+        </div>
+        <p class="markavalaszto">Többet is választhatsz!</p>
+      </div>
+      <div class="kapcsolat">
+          <h1>Kapcsolat</h1>
+          <p>
+              <label for="tel">Telefonszám</label>
+              <input type="telephone" name="tel" id="tel" placeholder="+36 -- --- ----">
+          </p>
+          <p>
+              <label for="email">Email-cím</label>
+              <input type="email" id="email" placeholder="pl. 1985">
+          </p>
+          <p>
+              <label for="facebook">Facebook profilod</label>
+              <input type="url" id="facebook" placeholder="http://facebook.com/...">
+          </p>
+          <p>
+              <label for="twitter">Twitter</label>
+              <input type="url" id="twitter" placeholder="http://twitter.com/...">
+          </p>
+          <p>
+              <label for="haz">Milyen házban laksz?</label>
+              <select id="haz">
+                <option disabled selected>Válassz típust!</option>
+                <option>sátor</option>
+                <option >bungalló</option>
+                <option>családi ház</option>
+                <option>kastély</option>
+              </select>
+          </p>
+        </div>
+    </div>
+    <div class="down-wrap">
+                <p>
+                    <label for="bemutatkozas">Bemutatkozás</label>
+                    <textarea id="bemutatkozas">Írj magadról pár mondatot!</textarea>
+                </p>
+                <p>
+                    <label for="cv">CV feltöltése</label>
+                    <input type="file" id="cv">
+                </p>
+                <p>
+                    <input type="checkbox" id="feltetlek" required value="feltetelek">
+                    <label for="feltelek">Elfogadom a </label> <a href="#">felhasználási feltételeket
+                </p>
+              </div>
+    <div class="btn-wrap">
+                <div class="button">
+                  <button type="submit">mentés</button>
+                </div>
+                <div class="button">
+                  <button type="reset">űrlap törlése</button>
+                </div>
+              </div>
+  </form>
+</body>
+
+</html>

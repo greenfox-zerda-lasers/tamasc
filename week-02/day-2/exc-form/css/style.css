@@ -1,0 +1,87 @@
+form{
+  background-color: rgb(220,214,205);
+  width: 830px;
+  box-sizing: border-box;
+  padding: 20px 100px;
+  font-family: sans-serif;
+}
+
+h1{font-weight:normal;}
+
+section h1{
+  color: rgb(244,243,244);
+  background-color: rgb(147,140,151);
+  border: 0;
+  border-radius: 2px;
+  padding: 4px;
+}
+
+.lista{
+  font-weight:normal;
+  display: flex;
+}
+
+.lista div:first-of-type {
+  width: 120px;
+  float:left;
+}
+
+.lista div:last-of-type {
+  width: 120px;
+  float:rigth;
+}
+
+.kapcsolat{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#nev, .kapcsolat input{
+  display: block;
+  width:100%;
+}
+
+.wrapper{
+  display:flex;
+  flex-direction: row;
+}
+
+.wrapper section{
+  width:300px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.radios {
+  display: flex;
+  flex-direction: row;
+}
+
+.radios > div{
+  flex-basis: 45%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+#szulev{
+  width: 75%;
+}
+
+.no::after, .clearinp::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+
+form > section{
+  width: 830px;
+  margin: 10px;
+}
+
+button{
+  display: inline;
+}

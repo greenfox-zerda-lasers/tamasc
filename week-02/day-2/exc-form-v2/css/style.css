@@ -1,0 +1,85 @@
+form{
+  background-color: rgb(220,214,205);
+  max-width: 830px;
+  box-sizing: border-box;
+  padding: 20px 100px;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+div{
+  margin: 10px 10px 10px 10px;
+}
+
+h1{
+  font-weight:normal;
+}
+
+div h1{
+  color: rgb(244,243,244);
+  background-color: rgb(147,140,151);
+  border: 0;
+  border-radius: 2px;
+  padding: 4px;
+}
+
+.up-wrap{
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 43%;
+}
+
+.szemelyes{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 300px;
+  justify-content: space-between;
+}
+
+#nev, .kapcsolat input, #haz{
+  display: block;
+}
+
+.alapadatok{
+  display: flex;
+  flex: 1 1 29%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.radios{
+  display: flex;
+  flex: 1 1 29%;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  margin: 0;
+  padding:0;
+}
+
+.nem{
+  display: flex;
+  flex: 1 1 45%;
+  justify-content: space-between;
+}
+
+.nem p{
+  padding: 15px;
+}
+
+.szul input{
+  max-width: 100px;
+  margin-top: 10px;
+}
+
+.lista > div {
+  float: left;
+}
+
+.kapcsolat{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
