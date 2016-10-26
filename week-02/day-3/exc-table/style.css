@@ -55,12 +55,12 @@ tr:first-child{
 
 /* width + outer borders */
 
-tr td:first-child, tr th:first-child{
+td:first-child, th:first-child{
   width:365px;
   border-left: 0;
 }
 
-tr td:last-child, tr th{
+td:last-child, th{
   width:435px;
   border-right:0;
 }
