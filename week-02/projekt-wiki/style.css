@@ -1,9 +1,126 @@
 /* main elements */
-aside{
-  width: 170px;
+body{
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-/* aside elements */
-img{
+aside{
+  flex:0 0 170px;
+}
+
+main{
+  box-sizing: border-box;
+  min-width: calc(100% - 170px); /* depending on width of of aside element*/
+}
+
+/* tags */
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+li{
+  list-style: none;
+}
+
+ul{
+  padding-left: 32px;
+  margin: 5px 0 20px 0;
+}
+
+ol {
+  padding-left: 20px;
+}
+
+h1,h2{
+  display: block;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.pictures{
+  background-color: #F9F9F9;
+  border: 1px solid #AAAAAA;
+  float:right;
+  text-align: center;
+}
+
+/* main section elements */
+
+/** main nav elemenets **/
+
+.main-nav ul li, input {
+  display: inline-block;
+  margin: 5px;
+}
+
+ul.login-tabs {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.nav-wrapper{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.subtabs{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.subtabs-left{
+  display: flex;
+  justify-content: flex-start;
+  padding:0;
+  flex-wrap: wrap;
+}
+
+.subtabs-right{
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  flex-wrap: wrap;
+  padding:0;
+}
+
+#hami{
+  width: 270px;
+  height: 535px;
+}
+
+#hami img {
+  width: 220px;
+  height: 280px;
+}
+
+#tower{
+  width: 230px;
+  height: 360px;
+}
+
+#tower img{
+  width: 220px;
+  height: 275px;
+}
+
+/* aside section elements */
+
+.sidebar-nav ul:first-child{
+  padding: 10px;
+}
+
+.sidebar-nav h6{
+  font-size: 1rem;
+  padding-left: 10px;
+  margin: 0px;
+}
+
+aside img{
   width: 100%;
 }

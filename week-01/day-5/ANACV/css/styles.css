@@ -1,5 +1,5 @@
 body{
-  width: 722px;
+  max-width: 722px;
   position: relative;
   margin: auto;
   background-image: url(https://raw.githubusercontent.com/greenfox-academy/teaching-materials/master/tools-and-coding/project-cv/workshop/anakin.png);

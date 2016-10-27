@@ -6,8 +6,8 @@
   <body>
     <aside>
       <img src="http://vignette3.wikia.nocookie.net/logopedia/images/b/b3/Wikipedia-logo-v2-en.svg/revision/latest?cb=20100519143323" alt="wiki logo"/>
-      <nav>
-        <ul class="main-nav">
+      <nav class="sidebar-nav">
+        <ul class="main-tabs">
           <li><a href="#">Main page</a></li>
           <li><a href="#">Contents</a></li>
           <li><a href="#">Featured content</a></li>
@@ -16,16 +16,16 @@
           <li><a href="#">Donate to Wikipedia</a></li>
           <li><a href="#">Wikipedia store</a></li>
         </ul>
+        <h6>Interaction</h6>
         <ul class="interaction">
-          <li>Interaction</li>
           <li><a href="#">Help</a></li>
           <li><a href="#">About Wikipedia</a></li>
           <li><a href="#">Community portal</a></li>
           <li><a href="#">Recent changes</a></li>
           <li><a href="#">Contact page</a></li>
         </ul>
+        <h6>Tools</h6>
         <ul class="tools">
-          <li>Tools</li>
           <li><a href="#">What links here</a></li>
           <li><a href="#">Related changes</a></li>
           <li><a href="#">Upload file</a></li>
@@ -35,18 +35,18 @@
           <li><a href="#">Wikidata item</a></li>
           <li><a href="#">Cite this page</a></li>
         </ul>
+        <h6>Print/export</h6>
         <ul class="print">
-          <li>Print/export</li>
           <li><a href="#">Create a book</a></li>
           <li><a href="#">Download as PDF</a></li>
           <li><a href="#">Printable version</a></li>
         </ul>
+        <h6>In other projects</h6>
         <ul class="in-other-projects">
-          <li>In other projects</li>
           <li><a href="#">Wikimedia Commons</a></li>
         </ul>
+        <h6>Languages</h6>
         <ul class="languages">
-          <li>Languages</li>
           <li><a href="#">العربية</a></li>
           <li><a href="#">Български</a></li>
           <li><a href="#">Català</a></li>
@@ -76,8 +76,107 @@
     </aside>
     <main>
       <header>
-
+        <nav class="main-nav">
+          <ul class="login-tabs">
+            <li>Not logged in</li>
+            <li><a href="#">Talk</a></li>
+            <li><a href="#">Contributions</a></li>
+            <li><a href="#">Create account</a></li>
+            <li><a href="#">Log in</a></li>
+          </ul>
+          <div class="subtabs">
+            <ul  class="subtabs-left">
+              <li><a href="#">Article</a></li>
+              <li><a href="#">Talk</a></li>
+            </ul>
+            <div class="subtabs-right">
+              <ul>
+                <li><a href="#">Read</a></li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">View history</a></li>
+              </ul>
+              <form>
+                 <input type="text" name="search" placeholder="Search">
+              </form>
+            </div>
+          </div>
+        </nav>
       </header>
+      <article>
+        <header>
+          <h1>Margaret Hamilton (scientist)</h1>
+          <p>
+            From Wikipedia, the free encyclopedia
+          </p>
+          <p>
+            For other people named Margaret Hamilton, see <a href="#">Margaret Hamilton (disambiguation)</a>.
+          </p>
+        </header>
+        <section class="intro">
+          <div id="hami" class="pictures">
+            <figure>
+              <h4>Margaret Hamilton</h4>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Margaret_Hamilton_1995.jpg" alt="Hami portrait"/>
+              <caption>Hamilton in 1995</caption>
+            </figure>
+          </div>
+          <p>
+            Margaret Heafield Hamilton (born August 17, 1936)[1] is a <a href="#">computer scientist, systems engineer</a> and <a href="#">business owner</a>. She was Director of the Software Engineering Division[2] of the MIT Instrumentation Laboratory, which developed on-board flight software for the Apollo space program.[3] In 1986, she became the founder and CEO of Hamilton Technologies, Inc., in Cambridge, Massachusetts. The company was developed around the Universal Systems Language based on her paradigm of Development Before the Fact (DBTF) for systems and software design.[4]
+            Hamilton has published over 130 papers, proceedings, and reports about the 60 projects and six major programs in which she has been involved.
+          </p>
+          <ul id="content-list">
+            <li>
+              Content
+              <ol>
+                <li><a href="#">1. Early life</a></li>
+                <li><a href="#">2. SAGE Project</a></li>
+                <li><a href="#">3. NASA</a>
+                  <ol>
+                    <li><a href="#">3.1 Apollo 11</a></li>
+                  </ol>
+                </li>
+                <li><a href="#">4. Businesses</a></li>
+                <li><a href="#">5. Legacy</a>
+                  <ol>
+                    <li><a href="#">5.1 Awards</a></li>
+                  </ol>
+                </li>
+                <li><a href="#">6. Personal life</a></li>
+                <li><a href="#">7. Publications</a></li>
+                <li><a href="#">8. References</a></li>
+              </ol>
+            </li>
+          </ul>
+        </section>
+        <section class="early-life">
+          <h2>Early-life</h2>
+          <p>
+            Margaret Heafield was born in Paoli, Indiana to Kenneth Heafield and Ruth Esther Heafield (née Partington).[5] After graduating from Hancock High School in 1954, she started out in mathematics at the University of Michigan and earned a B.A. in mathematics with a minor in philosophy from Earlham College in 1958.[6][7] She briefly taught high school mathematics and French upon graduation, in order to support her husband while he worked on his undergraduate degree at Harvard, with the ultimate goal of pursuing a graduate degree at a later time. She moved to Boston, Massachusetts with the intention of doing graduate study in abstract mathematics at Brandeis University. In 1960 she took an interim position at MIT to develop software for predicting weather on the LGP-30 and the PDP-1 computers (at Marvin Minsky's Project MAC) for professor Edward Norton Lorenz in the meteorology department.[8][1][9] Hamilton wrote that at that time, computer science and software engineering were not yet disciplines; instead, programmers learned on the job with hands-on experience.[3]
+            From 1961 to 1963, she worked on the SAGE Project at Lincoln Lab, where she was one of the programmers who wrote software for the first AN/FSQ-7 computer (the XD-1), to search for "unfriendly" aircraft; she also wrote software for the Air Force Cambridge Research Laboratories.
+          </p>
+
+        </section>
+        <section class="sage">
+          <h2>SAGE Project</h2>
+          <p>
+            The SAGE Project was an extension of Project Whirlwind, started by MIT, to create a computer system that could predict weather systems and track their movements through simulators; SAGE was soon developed for military use in anti-aircraft air defense from potential Soviet attacks during the Cold War. For her part, Hamilton described her duties as such,
+            What they used to do when you came into this organization as a beginner, was to assign you this program which nobody was able to ever figure out or get to run. When I was the beginner they gave it to me as well. And what had happened was it was tricky programming, and the person who wrote it took delight in the fact that all of his comments were in Greek and Latin. So I was assigned this program and I actually got it to work. It even printed out its answers in Latin and Greek. I was the first one to get it to work.[10]
+            It was her efforts on this project that made her a candidate for the position at NASA as the lead developer for Apollo flight software.
+          </p>
+        </section>
+        <section>
+          <h2>NASA</h2>
+          <div id="tower" class="pictures">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Margaret_Hamilton.gif" alt="Hami standing next to her software" />
+            <caption>Hamilton standing next to the navigation software that she and her MIT team produced for the Apollo project.</caption>
+          </div>
+          <p>
+            Hamilton then joined the Charles Stark Draper Laboratory at MIT, which at the time was working on the Apollo space mission. She eventually led a team credited with developing the software for Apollo and Skylab.[11] Hamilton's team was responsible for developing in-flight software,[12] which included algorithms designed by various senior scientists for the Apollo command module, lunar lander, and the subsequent Skylab.[3][13] Another part of her team designed and developed the systems software [14] which included the error detection and recovery software such as restarts and the Display Interface Routines (AKA the Priority Displays) which Hamilton designed and developed.[15] She worked to gain hands-on experience during a time when computer science courses were uncommon and software engineering courses did not exist.[3]
+            Her areas of expertise include systems design and software development, enterprise and process modelling, development paradigm, formal systems modeling languages, system-oriented objects for systems modelling and development, automated life-cycle environments, methods for maximizing software reliability and reuse, domain analysis, correctness by built-in language properties, open-architecture techniques for robust systems, full life-cycle automation, quality assurance, seamless integration, error detection and recovery techniques, man-machine interface systems, operating systems, end-to-end testing techniques, and life-cycle management techniques.[3][16]
+          </p>
+        </section>
+
+      </article>
     </main>
 
   </head>
