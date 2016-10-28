@@ -7,6 +7,34 @@ form{
   justify-content: space-between;
 }
 
+#cv {
+  display:none;
+}
+
+label[for="cv"]{
+  text-align: center;
+  font-weight: normal;
+  border: 1px solid rgb(147, 147, 147);
+  border-radius: 3px;
+  background-color: rgb(190, 190, 190);
+  padding: 8px 10px;
+  width: 180px;
+  height: 20px;
+}
+
+label[for="cv"]{
+  display:block;
+}
+
+label, .almostlabel{
+  font-weight: bold;
+}
+
+.lista p > label, label[for="feltelek"] {
+  font-weight: normal;
+  margin-bottom: 5px
+}
+
 div{
   margin: 10px 10px 10px 10px;
 }
@@ -21,7 +49,7 @@ div h1{
   background-color: rgb(147,140,151);
   border: 0;
   border-radius: 2px;
-  padding: 4px;
+  padding: 8px;
 }
 
 .up-wrap{
@@ -103,6 +131,16 @@ div h1{
   justify-content: space-between;
 }
 
+.kapcsolat input, input[type="name"] {
+  width: 100%;
+  height: 25px;
+}
+
+
+.szul input[type="number"] {
+  height: 25px;
+}
+
 .down-wrap{
    width: 100%;
    display: flex;
@@ -125,9 +163,44 @@ textarea{
    justify-content: space-between;
 }
 
-.btn-wrap button{
+button{
    box-shadow: 0 1px black;
-   padding: 3px;
    border: 0;
    border-radius: 3px;
+   width: 180px;
+   height: 45px;
+   padding: 8px 10px;
+   text-transform: uppercase;
+
+}
+
+.down-wrap p:first-child{
+  margin-bottom: 35px;
+}
+
+button[type="submit"]{
+  background-color: #4A4261;
+  font-size:1.2rem;
+  color: rgb(210, 210, 210);
+}
+
+
+button[type="reset"]{
+  background-color: #DCD6CD;
+  font-size:.9rem;
+  border: 1px solid rgb(82, 82, 82);
+  box-shadow: none;
+}
+
+.feltolt {
+  margin: 0;
+}
+
+.nem{
+  vertical-align: top;
+}
+
+label[for="no"], label[for="ferfi"]{
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
