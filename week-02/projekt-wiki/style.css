@@ -6,18 +6,23 @@ body{
   display: flex;
   flex-wrap: nowrap;
   background: linear-gradient(white, #f6f6f6 80px);
+  font-size: .9rem;
+  font-family: sans-serif;
 }
 
 aside{
   flex:0 0 160px;
   padding: 5px;
-  margin: 5px;
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.1rem;
 }
 
 main{
   box-sizing: border-box;
   min-width: calc(100% - 170px); /* depending on width of of aside element*/
   padding: 10px 10px 10px 10px;
+  line-height: 1.6em;
 }
 
 article{
@@ -31,6 +36,7 @@ article{
 
 a{
   text-decoration: none;
+  color: #066CC6;
 }
 a:hover{
   text-decoration: underline;
@@ -52,10 +58,17 @@ ol {
 h1,h2{
   display: block;
   border-bottom: 1px solid #CCCCCC;
+  font-family: "linux", Georgia, Times, serif;
+  font-weight: normal;
 }
 
 h1{
   font-size: 1.8rem;
+}
+
+h4{
+   margin: 10px 0 5px 0;
+   font-size: 1.05rem;
 }
 
 img{
@@ -65,7 +78,7 @@ img{
 figure {
   width: 100%;
   margin: 0;
-  padding:0
+  padding:0;
 }
 
 form{
@@ -77,13 +90,29 @@ span{
   color: black;
 }
 
+tr {
+   text-align: left;
+   vertical-align: top;
+   line-height: 1rem;
+}
+
+th, td {
+      padding-top:5px;
+      padding-left: 5px;
+      margin-left: 5px;
+}
+
+
+
 /*pictures*/
 
 .pictures{
   background-color: #F9F9F9;
   border: 1px solid #AAAAAA;
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
+  font-size:.76rem;
+  line-height: 1rem;
 }
 
 .img-group{
@@ -96,6 +125,7 @@ span{
   width: 270px;
   height: 535px;
   float:right;
+  text-align: center;
 }
 
 #hami img {
@@ -121,6 +151,13 @@ span{
 #space img{
   width: 220px;
   height: 170px;
+}
+
+.pictures p {
+   font-size: .76rem;
+   padding-left: 10px;
+   line-height: 1rem;
+   margin-top: 0;
 }
 
 /* main section elements */
@@ -195,20 +232,20 @@ li > a {
   width: 120px;
   height: 260px;
   padding: 10px;
+  line-height: 1.4rem;
 }
 
 #content-list li ol > li{
   margin-left: -20px;
-  padding-bottom: 5px;
 }
 
 #content-list li ol li ol li{
   margin-left: 0px;
-  padding: 5px 0;
+  padding: 0;
 }
 
 #content-list p{
-  margin: 5px 0;
+  margin: 10px 0;
   padding: 0;
   font-weight: bold;
 }
@@ -229,11 +266,35 @@ h2 > span, h3 > span {
 }
 
 .sidebar-nav h6{
-  font-size: 1rem;
+  font-size: .8rem;
   padding-left: 10px;
-  margin: 0px;
+  margin: 10px 0 0 0;
+  font-weight: normal;
 }
 
 aside img{
   width: 90%;
+}
+
+
+/* button*/
+
+button{
+   width: 15px;
+   height: 17px;
+   border: none;
+   background-color: white;
+   background-image: url(img/search.svg);
+   background-repeat: no-repeat;
+   position: absolute;
+   top: 11px;
+   right: 10px;
+}
+
+
+/* ----------------------------------------- */
+
+@font-face {
+  font-family: 'linux';
+  src: url('LinLibertine_Mah.ttf')  format('truetype');
 }
