@@ -2,7 +2,7 @@
 body{
   width: auto;
   height: auto;
-  margin: 15px;
+  margin: 10px;
   display: flex;
   flex-wrap: nowrap;
   background: linear-gradient(white, #f6f6f6 80px);
@@ -11,11 +11,11 @@ body{
 }
 
 aside{
-  flex:0 0 160px;
-  padding: 5px;
+  flex:0 0 145px;
+  padding: 5px 5px 5px 0;
   margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.1rem;
+  font-size: 0.75rem;
+  line-height: 1.2rem;
 }
 
 main{
@@ -29,17 +29,32 @@ article{
   background-color: white;
   border-left: 1px solid #A7D7F9;
   border-bottom: 1px solid #A7D7F9;
-  padding: 15px;
+  padding: 10px 10px 10px 20px;
+}
+
+header{
+   border-bottom: 1px solid #A7D7F9;
+}
+
+footer{
+   font-size: 0.7rem;
+   margin: 15px 0 15px 10px;
+   color: #333;
+   line-height: 1rem;
 }
 
 /* tags */
 
 a{
   text-decoration: none;
-  color: #066CC6;
+  color: #3366bb;
 }
 a:hover{
   text-decoration: underline;
+}
+
+a:visited{
+   color: #0b0080;
 }
 
 li{
@@ -60,10 +75,13 @@ h1,h2{
   border-bottom: 1px solid #CCCCCC;
   font-family: "linux", Georgia, Times, serif;
   font-weight: normal;
+  margin-bottom: 10px;
+  margin-top: 30px;
 }
 
 h1{
   font-size: 1.8rem;
+  padding-bottom: 7px;
 }
 
 h4{
@@ -102,7 +120,9 @@ th, td {
       margin-left: 5px;
 }
 
-
+p{
+   margin-top: 0;
+}
 
 /*pictures*/
 
@@ -130,7 +150,6 @@ th, td {
 
 #hami img {
   width: 220px;
-  height: 280px;
 }
 
 #tower{
@@ -140,7 +159,6 @@ th, td {
 
 #tower img{
   width: 220px;
-  height: 275px;
 }
 
 #space {
@@ -150,17 +168,28 @@ th, td {
 
 #space img{
   width: 220px;
-  height: 170px;
+}
+
+#office{
+   width: 190px;
+   height: 285px;
+   float: right;
+}
+
+#office img{
+   width: 180px;
 }
 
 .pictures p {
    font-size: .76rem;
    padding-left: 10px;
+   padding-right: 25px;
    line-height: 1rem;
    margin-top: 0;
 }
 
-/* main section elements */
+/* ----------------main section elements------------- */
+
 
 /** main nav elemenets **/
 
@@ -169,8 +198,19 @@ th, td {
   margin: 5px;
 }
 
-input{
-  margin: 8px;
+.main-nav img{
+  width: 22%;
+  position: absolute;
+  top: -2px;
+  left: -22px;
+}
+
+.login-tabs{
+  font-size:0.75rem;
+}
+
+.login-tabs li:first-of-type{
+   position: relative;
 }
 
 ul.login-tabs {
@@ -194,7 +234,26 @@ ul.login-tabs {
   justify-content: space-between;
   flex-wrap: nowrap;
   line-height: 1.2rem;
-  margin-bottom: -15px;
+  margin-bottom: -10px;
+  font-size: .8rem;
+}
+
+.subtabs ul {
+   padding-left: 0px;
+}
+
+.subtabs a{
+   padding-top: 5px;
+   background: linear-gradient(white, rgb(229, 239, 246));
+   border-left: 1px solid;
+   border-image: linear-gradient(white, #A7D7F9) 1 100%;
+   box-sizing: border-box;
+   height: 35px;
+}
+
+.subtabs a:last-of-type {
+   border-right: 1px solid;
+   border-image: linear-gradient(white, #A7D7F9) 1 100%;
 }
 
 .subtabs-left{
@@ -206,33 +265,41 @@ ul.login-tabs {
 .subtabs-right{
   display: flex;
   justify-content: flex-end;
-  align-content: center;
   flex-wrap: wrap;
-  padding:0;
 }
 
-.border-tabs{
-  font-size:0.9rem;
+input{
+   width: 20vw;
+   margin-top: 13px;
+   margin-left: 9px;
 }
 
-.footer-tabs{
-  font-size:0.6rem;
-}
-
-li > a {
+aside a {
   display: block;
 }
 
+.subtabs div {
+   margin:0;
+   padding: 0;
+}
+
+.main-nav .subtabs .active {
+   background: white;
+   color: #333;
+   border-bottom: 5px solid white;
+}
 /**article elements**/
 
 #content-list{
   background-color: #F9F9F9;
   border: 1px solid #AAAAAA;
   display: inline-block;
-  width: 120px;
+  box-sizing: border-box;
+  width: 122px;
   height: 260px;
-  padding: 10px;
-  line-height: 1.4rem;
+  padding: 8px;
+  line-height: 1.35rem;
+  font-size: 0.85rem;
 }
 
 #content-list li ol > li{
@@ -245,7 +312,7 @@ li > a {
 }
 
 #content-list p{
-  margin: 10px 0;
+  margin: 0px 0px 6px 4px;
   padding: 0;
   font-weight: bold;
 }
@@ -255,10 +322,52 @@ li > a {
   list-style-type: disc;
 }
 
-h2 > span, h3 > span {
-  font-size: 15px;
+h2 > span, h3 > span, #content-list span {
+  font-size: 13px;
   padding-left: 4px;
 }
+
+section p > a[href="#"], #legacy ul a[href="#"]{
+   vertical-align: top;
+   font-size: 0.65rem;
+   line-height: 1.2rem;
+   padding: 0;
+   margin: 0;
+}
+
+/*** article header elements ***/
+
+header p:first-of-type{
+   margin-top: -5px;
+   font-size: .8rem;
+}
+
+header p:last-of-type{
+   margin-left: 20px;
+   font-style: italic;
+}
+
+/** footer elements **/
+
+footer ul{
+   padding: inherit;
+   text-align: left;
+}
+
+ footer ul li {
+    margin-left: 0px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+#mediawiki, #wikimedia{
+   width: 88px;
+   height: 31px;
+   float: right;
+   padding: 0;
+   margin: -5px 5px 5px 5px;
+}
+
 /* aside section elements */
 
 .sidebar-nav ul:first-child{
@@ -266,16 +375,50 @@ h2 > span, h3 > span {
 }
 
 .sidebar-nav h6{
-  font-size: .8rem;
+  font-size: .75rem;
   padding-left: 10px;
   margin: 10px 0 0 0;
   font-weight: normal;
+  color: #4d4d4d;
+}
+.sidebar-nav ul {
+   border:  1px solid;
+   padding-bottom: 10px;
+   padding-top: 0px;
+   border-image: linear-gradient(to right, transparent 0%, #D8D8D8 20%, #D8D8D8 80%, transparent 100%) 0 0 1 0;
+}
+
+.sidebar-nav ul:last-of-type{
+   border: none;
 }
 
 aside img{
-  width: 90%;
+  width: 85%;
+  padding-left: 5px;
 }
 
+.sidebar-nav > :last-child {
+   position: relative;
+   color: #808080;
+   text-align: right;
+   margin-top: -10px;
+}
+
+.sidebar-nav > :last-child:hover {
+   text-decoration: underline;
+   color: #3366bb;
+}
+
+.sidebar-nav img{
+   width: 9%;
+   position: absolute;
+   top: -3px;
+   right: 43px;
+}
+
+.border-tabs{
+   font-size: .75rem;
+}
 
 /* button*/
 
@@ -287,10 +430,9 @@ button{
    background-image: url(img/search.svg);
    background-repeat: no-repeat;
    position: absolute;
-   top: 11px;
-   right: 10px;
+   top: 16px;
+   right: 2px;
 }
-
 
 /* ----------------------------------------- */
 
