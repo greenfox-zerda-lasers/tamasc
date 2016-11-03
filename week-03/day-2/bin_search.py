@@ -15,9 +15,14 @@ def sort_test(list):
     return True
 
 
+
 def binary_search(list, number):
     if sort_test(list) == False:
         list = bubble_sort(list)
+    traverse(list, number)
+
+
+def traverse(list, number):
     i = int(len(list)/2)
     if list[i] == number:
         print(True)
@@ -27,9 +32,9 @@ def binary_search(list, number):
         return
     elif list[i] > number:
         list = list[:i]
-        binary_search(list, number)
+        traverse(list, number)
     elif list[i] < number:
         list = list[i:]
-        binary_search(list, number)
+        traverse(list, number)
 
-binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 41)
+binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 45)
