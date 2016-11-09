@@ -2,7 +2,7 @@
 from prettytable import PrettyTable
 
 def numbers_to_list():
-    fr = open('otos.csv','r')
+    fr = open('otos.csv', 'r')
     all_numbers = []
     for line in fr:
         z = line[:-1]
@@ -15,7 +15,7 @@ def numbers_to_list():
 def occurance_of_numbers():
     all_numbers = numbers_to_list()
     occurance = []
-    for i in range(1,10):
+    for i in range(1, 91):
         occurance.append(all_numbers.count(str(i)))
     return occurance
 
@@ -40,3 +40,5 @@ def five_most_frequent():
         x.add_row(i)
     y = print(x)
     return y
+
+five_most_frequent()
