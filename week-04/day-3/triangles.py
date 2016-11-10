@@ -19,7 +19,7 @@ def triangles(num, side, x0, y0): #num=max number of triangles in a row, side=th
         line(x0-side/2+side/2-i/2, y0+0+i*math.sqrt(3)/2, x0-side/2+side-i, y0+side*math.sqrt(3)/2)
 
 
-triangles(120, 500,250,00)
+triangles(10, 500,300,40)
 
 
 master.mainloop()

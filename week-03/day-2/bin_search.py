@@ -33,8 +33,8 @@ def traverse(list, number):
     elif list[i] > number:
         list = list[:i]
         traverse(list, number)
-    elif list[i] < number:
+    else:
         list = list[i:]
         traverse(list, number)
 
-binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 45)
+binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 57)
