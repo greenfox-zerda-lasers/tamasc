@@ -1,3 +1,12 @@
+
+###### Test if sorted ###########
+def sort_test(list):
+    for i in range(len(list)-1):
+        if list[i] > list[i+1]:
+            return False
+    return True
+
+###### Sorting #################
 def bubble_sort(list):
     for i in range(len(list)):
         for j in range(len(list)-1):
@@ -5,36 +14,29 @@ def bubble_sort(list):
                 temp = list[j]
                 list[j] = list[j+1]
                 list[j+1] = temp
-    return(list)
+    return list
 
-
-def sort_test(list):
-    for i in range(len(list)-1):
-        if list[i] > list[i+1]:
-            return False
-    return True
-
-
-
-def binary_search(list, number):
-    if sort_test(list) == False:
-        list = bubble_sort(list)
-    traverse(list, number)
-
-
+###### Search #################
 def traverse(list, number):
     i = int(len(list)/2)
     if list[i] == number:
-        print(True)
-        return
+        return True                 #basecase 1
     elif len(list) < 3:
-        print(False)
-        return
+        return False                #basecase 2
     elif list[i] > number:
         list = list[:i]
-        traverse(list, number)
+        return traverse(list, number)    #  <---- must return
     else:
-        list = list[i:]
-        traverse(list, number)
+        list = list[i+1:]
+        return traverse(list, number)    #  <---- must return
 
-binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 57)
+###### Main function ############
+def binary_search(list, number):
+    if sort_test(list) is False:
+        list = bubble_sort(list)
+    return traverse(list, number)
+
+
+x = binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 57)
+
+print(x)
