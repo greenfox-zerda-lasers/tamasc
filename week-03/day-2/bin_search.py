@@ -21,14 +21,14 @@ def traverse(list, number):
     i = int(len(list)/2)
     if list[i] == number:
         return True                 #basecase 1
-    elif len(list) < 3:
+    elif len(list) < 1:
         return False                #basecase 2
     elif list[i] > number:
         list = list[:i]
-        return traverse(list, number)    #  <---- must return
+        return traverse(list, number)    #  <---- have to return
     else:
         list = list[i+1:]
-        return traverse(list, number)    #  <---- must return
+        return traverse(list, number)    #  <---- have to return
 
 ###### Main function ############
 def binary_search(list, number):
@@ -37,6 +37,7 @@ def binary_search(list, number):
     return traverse(list, number)
 
 
-x = binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5], 57)
+x = binary_search([3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 3, 4, 5, 56, 67, 45,
+                   45, 45, 3, 5, 3, 4, 5, 56, 67, 45, 45, 45, 3, 5, 1], 1)
 
 print(x)
