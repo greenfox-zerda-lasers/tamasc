@@ -11,9 +11,6 @@ class cab():
         self.state = 'playing'
         print(self.guess_me)
 
-    def stats(self):
-        print('Current state:' + self.state + ' Guessed ' + str(self.counter) + ' times.')
-
     def guess(self, your_guess):
         for char in your_guess:
             if char not in '0123456789':
