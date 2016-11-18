@@ -39,7 +39,7 @@ class Elevator():
             pre_level = self.model.position
             self.model.add_people(self.check_input(input('\nEntering people: ')))
             self.model.remove_people(self.check_input(input('\nLeaving people: ')))
-            self.model.move_elevator(input('\nMove (up/down): '))
+            self.model.move_elevator(input('\nMove (u/d): '))
             self.view.waiting(pre_level, self.model.position)
             self.view.show_state(self.model.number_of_levels, self.model.position, self.model.people_in_elevator)
 

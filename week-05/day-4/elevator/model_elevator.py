@@ -25,9 +25,9 @@ class Model_elevator:
         self.people_in_elevator += added_people
 
     def move_elevator(self, moving):
-        if moving == 'up' and self.position != self.number_of_levels:
+        if moving == 'u' and self.position != self.number_of_levels:
             self.position += 1
-        elif moving == 'down' and self.position != 0:
+        elif moving == 'd' and self.position != 0:
             self.position -= 1
         else:
             return
