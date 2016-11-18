@@ -1,29 +1,38 @@
 import sys, getopt
-import proba
+from todo_view import Todo_view
+from todo_model import Todo_model
 
-class Todo:
+class Todo():
 
     def __init__(self, list_name):
-        self.list_name = list_name
+        self.model = Todo_model(list_name)
+        self.view = Todo_view()
+
+        self.get_args(sys.argv[1:])
 
     def complete_task(self, task):
-        pass
+        print('complete ' + task)
 
     def remove_task(self, task):
-        pass
+        print('remove ' + task)
 
     def add_task(self, task):
-        pass
+        print('add ' + task)
 
     def list_tasks(self):
-        pass
+        print('list')
+
+    def usage(self):
+        self.view.usage()
 
     def get_args(self,argv):
         try:
             opts, args = getopt.getopt(argv,"la:r:c:")
-            print(opts)
         except getopt.GetoptError:
             sys.exit(2)
+
+        if len(opts) == 0:
+            self.usage()
 
         for opt, arg in opts:
             if opt == '-l':
@@ -34,3 +43,5 @@ class Todo:
                 self.remove_task(arg)
             elif opt in ("-c"):
                 self.complete_task(arg)
+
+x = Todo('my_list')
