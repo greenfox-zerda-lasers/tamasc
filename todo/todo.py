@@ -13,12 +13,15 @@ class Todo():
 
     def complete_task(self, task):
         self.model.complete_task(task)
+        self.model.update_file()
 
     def remove_task(self, task):
         self.model.remove_task(task)
+        self.model.update_file()
 
     def add_task(self, task):
         self.model.add_task(task)
+        self.model.update_file()
 
     def list_tasks(self):
         self.model.list()

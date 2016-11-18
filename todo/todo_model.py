@@ -45,15 +45,12 @@ class Todo_model():
     def add_task(self, task):
         task = [str(datetime.now()), 'doing', task + '\n']
         self.todo_list.append(task)
-        self.update_file()
 
     def remove_task(self, task):
         del self.todo_list[int(task)-1]
-        self.update_file()
 
     def complete_task(self, task):
         self.todo_list[int(task)-1][1] = 'completed'
-        self.update_file()
 
 
 # x = Todo_model("my_list")
