@@ -2,6 +2,7 @@ import sys, getopt
 from todo_view import Todo_view
 from todo_model import Todo_model
 
+
 class Todo():
 
     def __init__(self, list_name):
@@ -11,16 +12,16 @@ class Todo():
         self.get_args(sys.argv[1:])
 
     def complete_task(self, task):
-        print('complete ' + task)
+        self.model.complete_task(task)
 
     def remove_task(self, task):
-        print('remove ' + task)
+        self.model.remove_task(task)
 
     def add_task(self, task):
-        print('add ' + task)
+        self.model.add_task(task)
 
     def list_tasks(self):
-        print('list')
+        self.model.list()
 
     def usage(self):
         self.view.usage()
