@@ -42,7 +42,7 @@ class hangman():
         self.lose()
 
     def lose(self):
-        print('You lost, you have hanged!')
+        print('You lost!')
         self.game_state = 'lost'
         self.new_game()
 
