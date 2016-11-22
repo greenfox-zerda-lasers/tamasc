@@ -21,3 +21,12 @@ class View():
         file_name = 'hero-' + direction + '.png'
         self.hero = PhotoImage(file=file_name)
         self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.hero)
+
+    def display_skeleton(self, skeleton_list):
+        self.skeleton = PhotoImage(file="skeleton.png")
+        for skeleton in skeleton_list:
+            self.canvas.create_image(36+skeleton.position[0]*72, 36+skeleton.position[1]*72, image=self.skeleton)
+
+    def display_boss(self, position,):
+        self.boss = PhotoImage(file="boss.png")
+        self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.boss)

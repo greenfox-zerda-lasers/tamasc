@@ -9,7 +9,7 @@ class Map():
                               [0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
                               [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
                               [0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
-        self.number_of_monsters = randint(1, 3)
+        self.number_of_skeletons = randint(3, 5)
         self.map_size = [10, 11]
 
 # *******************Characters********************
@@ -18,12 +18,10 @@ class Character():
 
     def __init__(self, tile_position):
         self.position = self.randomize_position(tile_position)
-        print(self.position)
         self.stats = [100, 100, 50, 50]
 
     def randomize_position(self, tile_position):
         x, y = randint(0, 9), randint(0, 10)
-        print(x,y)
         if tile_position[y][x] == 1:
             print('wall ')
             return self.randomize_position(tile_position)
@@ -49,11 +47,11 @@ class Hero(Character):
     pass
 
 
-class Monster(Character):
+class Skeleton(Character):
 
     pass
 
-class Boss(Monster):
+class Boss(Character):
 
     pass
 

@@ -1,4 +1,4 @@
-from model import Map, Hero
+from model import Map, Hero, Skeleton, Boss
 from view import View
 
 
@@ -14,10 +14,14 @@ class Game():
     def game_loop(self):
         self.view.display_hero(self.hero.position, 'down')
         self.input_event()
+        self.generate_skeletons()
+        self.view.display_skeleton(self.skeleton_list)
+        self.generate_boss()
+        self.view.display_boss(self.boss.position)
         # while self.hero.stats[0] > 0:
 
 
-# # *********************Events**********************
+# *********************Events**********************
     def input_event(self):
         self.view.master.bind('<s>', self.set_move)
         self.view.master.bind('<w>', self.set_move)
@@ -39,5 +43,16 @@ class Game():
             direction = 'right'
         print(self.hero.position)
         self.view.display_hero(self.hero.position, direction)
+
+# *****************Generate enemies*******************
+    def generate_skeletons(self):
+        skeleton_name_list = ['skeleton'+str(i) for i in range(self.map.number_of_skeletons)]
+        self.skeleton_list = []
+        for skeleton_name in skeleton_name_list:
+            self.skeleton_name = Skeleton(self.map.tile_position)
+            self.skeleton_list.append(self.skeleton_name)
+
+    def generate_boss(self):
+        self.boss = Boss(self.map.tile_position)
 
 x = Game()
