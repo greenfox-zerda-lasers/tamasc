@@ -12,8 +12,28 @@ class Game():
         self.view.master.mainloop()
 
     def game_loop(self):
+        # while self.hero.stats[0] > 0:
         self.view.display_hero(self.hero.position)
+        self.input_event()
 
 
+
+    def input_event(self):
+        self.view.master.bind('<s>', self.set_move)
+        self.view.master.bind('<w>', self.set_move)
+        self.view.master.bind('<a>', self.set_move)
+        self.view.master.bind('<d>', self.set_move)
+
+    def set_move(self, event):
+        if event.char == 'w':
+            self.hero.position = self.hero.move([0, -1], self.map.tile_position)
+        elif event.char == 's':
+            self.hero.position = self.hero.move([0, 1], self.map.tile_position)
+        elif event.char == 'a':
+            self.hero.position = self.hero.move([-1, 0], self.map.tile_position)
+        elif event.char == 'd':
+            self.hero.position = self.hero.move([1, 0], self.map.tile_position)
+        print(self.hero.position)
+        self.view.display_hero(self.hero.position)
 
 x = Game()
