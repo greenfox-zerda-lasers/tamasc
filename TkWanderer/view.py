@@ -17,6 +17,7 @@ class View():
                 else:
                     self.canvas.create_image(36+i*72, 36+j*72, image=self.floor)
 
-    def display_hero(self, position):
-        self.hero = PhotoImage(file="hero-down.png")
+    def display_hero(self, position, direction):
+        file_name = 'hero-' + direction + '.png'
+        self.hero = PhotoImage(file=file_name)
         self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.hero)

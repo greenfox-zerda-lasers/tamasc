@@ -38,7 +38,11 @@ class Character():
 
     def is_valid_move(self, new_position, tile_position):
         inside_map = new_position[0] >= 0 and new_position[0] <= 9 and new_position[1] >= 0 and new_position[1] <= 10
-        return tile_position[new_position[1]][new_position[0]] == 0 and inside_map
+        try:
+            return tile_position[new_position[1]][new_position[0]] == 0 and inside_map
+        except IndexError:
+            return False
+
 
 class Hero(Character):
 
