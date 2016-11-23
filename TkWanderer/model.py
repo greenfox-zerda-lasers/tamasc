@@ -19,8 +19,7 @@ class Character():
 
     def __init__(self, occupied_tile_position):
         self.position = self.randomize_position(occupied_tile_position)
-        self.stats = [100, 100, 50, 50]
-        print('character generated' + __name__)
+        self.has_key = False
 
     def randomize_position(self, occupied_tile_position):
         x, y = randint(0, 9), randint(0, 10)
@@ -49,15 +48,24 @@ class Character():
 
 class Hero(Character):
 
-    pass
-
+    def __init__(self, occupied_tile_position):
+        super().__init__(occupied_tile_position)
+        self.level = 1
+        self.stats = [20+3*randint(1,6), 2*randint(1,6), 5+randint(1,6), 1]   #HP DP SP
+        self.current_HP = self.stats[0]
 
 class Skeleton(Character):
 
-    pass
+    def __init__(self, occupied_tile_position):
+        super().__init__(occupied_tile_position)
+        self.level = 1
+        self.stats = [2*self.level*randint(1,6)+randint(1,6), self.level/2*randint(1,6)+randint(1,6)/2, self.level*randint(1,6)+self.level]   #HP DP SP
+        self.current_HP = self.stats[0]
 
 class Boss(Character):
 
-    pass
-
-# *********************Events**********************
+    def __init__(self, occupied_tile_position):
+        super().__init__(occupied_tile_position)
+        self.level = 1
+        self.stats = [2*self.level*randint(1,6)+randint(1,6), self.level/2*randint(1,6)+randint(1,6)/2, self.level*randint(1,6)+self.level]   #HP DP SP
+        self.current_HP = self.stats[0]

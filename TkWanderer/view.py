@@ -6,7 +6,6 @@ class View():
         self.master = Tk()
         self.canvas = Canvas(width=900, height=800, bg='white')
         self.canvas.pack()
-        print('canvas packed')
 
     def display_map(self, wall_position):
         self.floor = PhotoImage(file="floor.png")
@@ -21,14 +20,15 @@ class View():
     def display_hero(self, position, direction):
         file_name = 'hero-' + direction + '.png'
         self.hero = PhotoImage(file=file_name)
-        # print(position)
         self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.hero)
 
     def display_skeleton(self, skeleton_list):
         self.skeleton = PhotoImage(file="skeleton.png")
         for skeleton in skeleton_list:
             self.canvas.create_image(36+skeleton.position[0]*72, 36+skeleton.position[1]*72, image=self.skeleton)
+            # print(self.skeleton)
 
     def display_boss(self, position,):
         self.boss = PhotoImage(file="boss.png")
-        self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.boss)
+        self.ref_boss = self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.boss)
+        print(self.ref_boss)

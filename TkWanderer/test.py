@@ -1,17 +1,56 @@
-from tkinter import *
 
-root = Tk()
+# from tkinter import *
+#
+# root = Tk()
+#
+# def key(event):
+#     print ("pressed", repr(event.char))
+#
+# def callback(event):
+#     canvas.focus_set()
+#     print ("clicked at", event.x, event.y)
+#
+# canvas = Canvas( width=100, height=100)
+# canvas.bind("<Key>", key)
+# canvas.bind("<Button-1>", callback)
+# canvas.pack()
+#
+# root.mainloop()
+# ************************************************************
+# from numpy import *
+# n = [[0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+#                       [0, 0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+#                       [0, 1, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#                       [0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
+#                       [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
+#                       [0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
+#
+# n2 = [[0, 0, 0, 0, 1, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+#                       [0, 0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+#                       [0, 1, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#                       [0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
+#                       [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
+#                       [0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
+#
+#
+# print(subtract(n, n2))
+# ***********************************************************************
+# from random import choice
+# moves = {'up': [0, -1], 'down': [0, 1], 'left': [-1, 0], 'right': [1, 0]}
+#
+# print(choice(list(moves.values())))
+#
+# print(moves['up'][1])
 
-def key(event):
-    print ("pressed", repr(event.char))
+# *************************************************************************
+class Anyad():
+    pass
 
-def callback(event):
-    canvas.focus_set()
-    print ("clicked at", event.x, event.y)
+x = Anyad()
 
-canvas = Canvas( width=100, height=100)
-canvas.bind("<Key>", key)
-canvas.bind("<Button-1>", callback)
-canvas.pack()
 
-root.mainloop()
+print(x)
+
+del x
+
+print(x)
