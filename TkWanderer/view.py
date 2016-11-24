@@ -1,11 +1,12 @@
 from tkinter import *
-
+from model import Boss
 
 class View():
     def __init__(self):
         self.master = Tk()
         self.canvas = Canvas(width=900, height=800, bg='white')
         self.canvas.pack()
+
 
     def display_map(self, wall_position):
         self.floor = PhotoImage(file="floor.png")
@@ -22,13 +23,14 @@ class View():
         self.hero = PhotoImage(file=file_name)
         self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.hero)
 
-    def display_skeleton(self, skeleton_list):
+    def display_enemies(self, enemy_list):
         self.skeleton = PhotoImage(file="skeleton.png")
-        for skeleton in skeleton_list:
-            self.canvas.create_image(36+skeleton.position[0]*72, 36+skeleton.position[1]*72, image=self.skeleton)
-            # print(self.skeleton)
-
-    def display_boss(self, position,):
         self.boss = PhotoImage(file="boss.png")
-        self.ref_boss = self.canvas.create_image(36+position[0]*72, 36+position[1]*72, image=self.boss)
-        print(self.ref_boss)
+        for enemy in enemy_list:
+            if type(enemy) == Boss:
+                self.canvas.create_image(36+enemy.position[0]*72, 36+enemy.position[1]*72, image=self.boss)
+            else:
+                self.canvas.create_image(36+enemy.position[0]*72, 36+enemy.position[1]*72, image=self.skeleton)
+
+    def display_game_over(self):
+        pass

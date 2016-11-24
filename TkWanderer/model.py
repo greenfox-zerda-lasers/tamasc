@@ -7,11 +7,10 @@ class Map():
                               [0, 0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
                               [0, 1, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                               [0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
-                              [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
-                              [0, 0, 0, 1, 0, 0, 0, 1, 0, 0]]
+                              [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0]]
         self.occupied_tile_position = self.wall_position
         self.number_of_skeletons = randint(3, 5)
-        self.map_size = [10, 11]
+        self.map_size = [len(self.wall_position[0]), len(self.wall_position)]
 
 # *******************Characters********************
 
@@ -22,9 +21,8 @@ class Character():
         self.has_key = False
 
     def randomize_position(self, occupied_tile_position):
-        x, y = randint(0, 9), randint(0, 10)
+        x, y = randint(0, 9), randint(0, 9)
         if occupied_tile_position[y][x] == 1:
-            print('wall ')
             return self.randomize_position(occupied_tile_position)
         occupied_tile_position[y][x] = 1
         return x, y
