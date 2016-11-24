@@ -41,9 +41,13 @@ class View():
 
     def display_intro(self):
         self.intro = PhotoImage(file="tkwanderer.png")
-        self.intro = self.canvas.create_image(360, 330, image=self.intro)
-        time.sleep(1)
-        self.canvas.delete(self.intro)
+        self.intro_object = self.canvas.create_image(360, 330, image=self.intro, tag='logo')
 
     def delete_intro(self):
-        pass
+        self.canvas.delete('logo')
+
+    def display_attack(self, hero_position, enemy_position):
+        self.spark = PhotoImage(file="spark.png")
+        x = (hero_position[0]+enemy_position[0])/2*72
+        y = (hero_position[1]+enemy_position[1])/2*72
+        self.canvas.create_image(x, y, image=self.spark)

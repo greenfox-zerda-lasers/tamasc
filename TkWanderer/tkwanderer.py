@@ -5,20 +5,19 @@ from random import randint, choice
 
 class Game():
     def __init__(self):
-        self.moves = {'up': [0, -1], 'down': [0, 1], 'left': [-1, 0], 'right': [1, 0]}
         self.direction = 'right'
         self.level = 1
         self.view = View()
         self.map = Map()
+        self.hero = Hero(self.map.occupied_tile_position)
         self.game_start(self.level)
-        self.view.display_intro()
         self.view.master.mainloop()
-
 
     def game_start(self, level):
         self.hero_move_number = 0
         self.view.display_map(self.map.occupied_tile_position)
-        self.hero = Hero(self.map.occupied_tile_position)
+        self.hero.position = self.hero.randomize_position(self.map.occupied_tile_position)
+        self.view.display_intro()
         self.generate_enemies(level)
         self.input_event()
         self.view.display_hero(self.hero.position, 'down')
@@ -31,38 +30,40 @@ class Game():
         self.view.master.bind('<a>', self.set_move)
         self.view.master.bind('<d>', self.set_move)
         self.view.master.bind('<space>', self.battle)
+        self.view.master.bind('<Escape>', self.quit)
 
     def set_move(self, event):
         if event.char == 'w':
             self.hero.position, self.map.occupied_tile_position = self.hero.move(
-                self.moves['up'], self.map.occupied_tile_position)
+                self.hero.moves['up'], self.map.occupied_tile_position)
             self.direction = 'up'
         elif event.char == 's':
             self.hero.position, self.map.occupied_tile_position = self.hero.move(
-                self.moves['down'], self.map.occupied_tile_position)
+                self.hero.moves['down'], self.map.occupied_tile_position)
             self.direction = 'down'
         elif event.char == 'a':
             self.hero.position, self.map.occupied_tile_position = self.hero.move(
-                self.moves['left'], self.map.occupied_tile_position)
+                self.hero.moves['left'], self.map.occupied_tile_position)
             self.direction = 'left'
         elif event.char == 'd':
             self.hero.position, self.map.occupied_tile_position = self.hero.move(
-                self.moves['right'], self.map.occupied_tile_position)
+                self.hero.moves['right'], self.map.occupied_tile_position)
             self.direction = 'right'
         self.hero_move_number += 1
         self.view.display_hero(self.hero.position, self.direction)
         self.generate_enemy_moves()
         self.view.display_enemies(self.enemy_list)
+        self.view.delete_intro()
 
     def generate_enemy_moves(self):
         if self.hero_move_number%2:
             for enemy in self.enemy_list:
                 enemy.position, self.map.occupied_tile_position = enemy.move(
-                    choice(list(self.moves.values())), self.map.occupied_tile_position)
+                    choice(list(enemy.moves.values())), self.map.occupied_tile_position)
 
     def battle(self, event):
-        x_coord = self.hero.position[0]+self.moves[self.direction][0]
-        y_coord = self.hero.position[1]+self.moves[self.direction][1]
+        x_coord = self.hero.position[0]+self.hero.moves[self.direction][0]
+        y_coord = self.hero.position[1]+self.hero.moves[self.direction][1]
         attack_coords = [x_coord, y_coord]
         attacked_enemy = None
         if len(self.enemy_list) != 0:
@@ -73,6 +74,7 @@ class Game():
             return
         attacked_enemy.current_HP -= max(self.hero.stats[2] + randint(1,6) - attacked_enemy.stats[1], 0)
         self.hero.current_HP -= max(attacked_enemy.stats[2] + randint(1,6) - self.hero.stats[1], 0)
+        self.view.display_attack(self.hero.position, attacked_enemy.position)
         print('enemy:' + str(attacked_enemy.current_HP) + '  hero:' + str(self.hero.current_HP))
         if attacked_enemy.current_HP <= 0:
             self.kill_enemy(attacked_enemy)
@@ -86,7 +88,7 @@ class Game():
         self.hero.level_up()
         if attacked_enemy.has_key == True:
             self.hero.has_key = True
-        if type(attacked_enemy == Boss):
+        if type(attacked_enemy) == Boss:
             self.hero.has_killed_boss = True
         if self.hero.has_key == True and self.hero.has_killed_boss == True:
             self.new_game()
@@ -100,6 +102,12 @@ class Game():
     def new_game(self):
         self.level += 1
         self.game_start(self.level)
+        self.hero.has_killed_boss = False
+        self.hero.has_key = False
+
+    def quit(self, event):
+        self.view.master.destroy()
+
 
 # *****************Generate enemies*******************
     def generate_enemies(self, level):
