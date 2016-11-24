@@ -19,7 +19,7 @@ class View():
                 else:
                     self.canvas.create_image(36+i*72, 36+j*72, image=self.floor)
 
-    def display_hero(self, position, direction, isDead=False):
+    def display_hero(self, position, direction='down', isDead=False):
         file_name = 'hero-' + direction + '.png'
         if isDead:
             file_name = 'skull.png'
@@ -39,8 +39,11 @@ class View():
         self.game_over = PhotoImage(file="game_over.png")
         self.canvas.create_image(360, 330, image=self.game_over)
 
-    def display_intro(self):
-        self.intro = PhotoImage(file="tkwanderer.png")
+    def display_intro(self, level):
+        if level == 1:
+            self.intro = PhotoImage(file="tkwanderer.png")
+        else:
+            self.intro = PhotoImage(file="next_level.png")
         self.intro_object = self.canvas.create_image(360, 330, image=self.intro, tag='logo')
 
     def delete_intro(self):

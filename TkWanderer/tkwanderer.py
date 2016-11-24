@@ -15,13 +15,12 @@ class Game():
 
     def game_start(self, level):
         self.hero_move_number = 0
+        self.map.next_level_map()
         self.view.display_map(self.map.occupied_tile_position)
         self.hero.position = self.hero.randomize_position(self.map.occupied_tile_position)
-        self.view.display_intro()
+        self.view.display_intro(self.level)
         self.generate_enemies(level)
         self.input_event()
-        self.view.display_hero(self.hero.position, 'down')
-        self.view.display_enemies(self.enemy_list)
 
 # *********************Events**********************
     def input_event(self):
@@ -50,10 +49,12 @@ class Game():
                 self.hero.moves['right'], self.map.occupied_tile_position)
             self.direction = 'right'
         self.hero_move_number += 1
-        self.view.display_hero(self.hero.position, self.direction)
+        self.view.display_hero(self.hero.position, self.direction, self.hero.isDead)
         self.generate_enemy_moves()
         self.view.display_enemies(self.enemy_list)
-        self.view.delete_intro()
+        if self.hero_move_number > 0:
+            self.start()
+
 
     def generate_enemy_moves(self):
         if self.hero_move_number%2:
@@ -95,8 +96,9 @@ class Game():
 
     def game_over(self):
         self.enemy_list = []
+        self.hero.isDead = True
         self.view.display_enemies(self.enemy_list)
-        self.view.display_hero(self.hero.position, self.direction, True)
+        self.view.display_hero(self.hero.position, self.direction, self.hero.isDead)
         self.view.display_game_over()
 
     def new_game(self):
@@ -108,13 +110,19 @@ class Game():
     def quit(self, event):
         self.view.master.destroy()
 
+    def start(self):
+        self.view.delete_intro()
+        self.hero.restore_health()
+        self.view.display_hero(self.hero.position, self.direction, self.hero.isDead)
+        self.view.display_enemies(self.enemy_list)
+
 
 # *****************Generate enemies*******************
     def generate_enemies(self, level):
-        skeleton_name_list = ['skeleton'+str(i) for i in range(self.map.number_of_skeletons)]
         self.boss = Boss(self.map.wall_position, level)
         self.enemy_list = [self.boss]
-        for skeleton_name in skeleton_name_list:
+        for i in range(self.map.number_of_skeletons):
+            skeleton_name = 'skeleton'+str(i)
             self.skeleton_name = Skeleton(self.map.wall_position, level)
             if skeleton_name[-1:] == '0':
                 self.skeleton_name.has_key = True

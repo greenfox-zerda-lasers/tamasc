@@ -8,8 +8,12 @@ class Map():
         self.occupied_tile_position = self.wall_position[:]
         self.number_of_skeletons = randint(3, 5)
 
+    def next_level_map(self):
+        self.wall_position = self.randomize_map()
+        self.occupied_tile_position = self.wall_position[:]
+
     def randomize_map(self):
-        occupied_tile_position =[]
+        occupied_tile_position = []
         for i in range(self.map_size[1]):
             x = []
             for j in range(self.map_size[0]):
@@ -38,7 +42,7 @@ class Character():
         if occupied_tile_position[y][x] == 1 or True not in valid_move_list:
             return self.randomize_position(occupied_tile_position)
         occupied_tile_position[y][x] = 1
-        return x, y
+        return [x, y]
 
     def move(self, direction, occupied_tile_position):
         new_position = [self.position[0]+direction[0], self.position[1]+direction[1]]
@@ -63,9 +67,10 @@ class Hero(Character):
     def __init__(self, occupied_tile_position):
         super().__init__(occupied_tile_position)
         self.level = 1
-        self.stats = [45 + 2*randint(1, 6), 2*randint(1, 6), 5 + randint(1, 6)]   #HP DP SP
+        self.stats = [ 2*randint(1, 6), 2*randint(1, 6), 5 + randint(1, 6)]   #HP DP SP
         self.current_HP = self.stats[0]
         self.has_killed_boss = False
+        self.isDead = False
 
     def level_up(self):
         self.level += 1
@@ -88,6 +93,7 @@ class Skeleton(Character):
         self.stats = [2*level*randint(1, 6) + randint(1, 6), level/2*randint(
             1, 6) + randint(1, 6)/2, level*randint(1, 6) + level]   #HP DP SP
         self.current_HP = self.stats[0]
+
 
 class Boss(Character):
 
