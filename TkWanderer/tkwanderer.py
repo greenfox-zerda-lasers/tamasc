@@ -7,17 +7,19 @@ class Game():
     def __init__(self):
         self.moves = {'up': [0, -1], 'down': [0, 1], 'left': [-1, 0], 'right': [1, 0]}
         self.direction = 'right'
+        self.level = 1
         self.view = View()
         self.map = Map()
-        self.view.display_map(self.map.occupied_tile_position)
-        self.hero = Hero(self.map.occupied_tile_position)
-        self.game_start()
+        self.game_start(self.level)
+        self.view.display_intro()
         self.view.master.mainloop()
 
 
-    def game_start(self):
+    def game_start(self, level):
         self.hero_move_number = 0
-        self.generate_enemies()
+        self.view.display_map(self.map.occupied_tile_position)
+        self.hero = Hero(self.map.occupied_tile_position)
+        self.generate_enemies(level)
         self.input_event()
         self.view.display_hero(self.hero.position, 'down')
         self.view.display_enemies(self.enemy_list)
@@ -74,24 +76,38 @@ class Game():
         print('enemy:' + str(attacked_enemy.current_HP) + '  hero:' + str(self.hero.current_HP))
         if attacked_enemy.current_HP <= 0:
             self.kill_enemy(attacked_enemy)
-        elif self.hero.current_HP <= 0:
+        if self.hero.current_HP <= 0:
             self.game_over()
 
     def kill_enemy(self, attacked_enemy):
         self.map.occupied_tile_position[attacked_enemy.position[1]][attacked_enemy.position[0]] = 0
         self.enemy_list.remove(attacked_enemy)
         self.view.display_enemies(self.enemy_list)
+        self.hero.level_up()
+        if attacked_enemy.has_key == True:
+            self.hero.has_key = True
+        if type(attacked_enemy == Boss):
+            self.hero.has_killed_boss = True
+        if self.hero.has_key == True and self.hero.has_killed_boss == True:
+            self.new_game()
 
     def game_over(self):
-        print('ojajjjjjj')
+        self.enemy_list = []
+        self.view.display_enemies(self.enemy_list)
+        self.view.display_hero(self.hero.position, self.direction, True)
+        self.view.display_game_over()
+
+    def new_game(self):
+        self.level += 1
+        self.game_start(self.level)
 
 # *****************Generate enemies*******************
-    def generate_enemies(self):
+    def generate_enemies(self, level):
         skeleton_name_list = ['skeleton'+str(i) for i in range(self.map.number_of_skeletons)]
-        self.boss = Boss(self.map.wall_position)
+        self.boss = Boss(self.map.wall_position, level)
         self.enemy_list = [self.boss]
         for skeleton_name in skeleton_name_list:
-            self.skeleton_name = Skeleton(self.map.wall_position)
+            self.skeleton_name = Skeleton(self.map.wall_position, level)
             if skeleton_name[-1:] == '0':
                 self.skeleton_name.has_key = True
             self.enemy_list.append(self.skeleton_name)

@@ -8,7 +8,7 @@ class Map():
                               [0, 1, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                               [0, 0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
                               [0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 0, 1, 1, 0]]
-        self.occupied_tile_position = self.wall_position
+        self.occupied_tile_position = self.wall_position[:]
         self.number_of_skeletons = randint(3, 5)
         self.map_size = [len(self.wall_position[0]), len(self.wall_position)]
 
@@ -37,7 +37,8 @@ class Character():
             return self.position, occupied_tile_position
 
     def is_valid_move(self, new_position, wall_position):
-        inside_map = new_position[0] >= 0 and new_position[0] <= 9 and new_position[1] >= 0 and new_position[1] <= 10
+        inside_map = new_position[0] >= 0 and new_position[
+            0] <= 9 and new_position[1] >= 0 and new_position[1] <= 10
         try:
             return wall_position[new_position[1]][new_position[0]] == 0 and inside_map
         except IndexError:
@@ -49,21 +50,28 @@ class Hero(Character):
     def __init__(self, occupied_tile_position):
         super().__init__(occupied_tile_position)
         self.level = 1
-        self.stats = [20+3*randint(1,6), 2*randint(1,6), 5+randint(1,6), 1]   #HP DP SP
+        self.stats = [20 + 2*randint(1, 6), 2*randint(1, 6), 5 + randint(1, 6)]   #HP DP SP
         self.current_HP = self.stats[0]
+        self.has_killed_boss = False
+
+    def level_up(self):
+        self.level += 1
+        self.stats = [stats + randint(1,6) for stats in self.stats]
+
 
 class Skeleton(Character):
 
-    def __init__(self, occupied_tile_position):
+    def __init__(self, occupied_tile_position, level):
         super().__init__(occupied_tile_position)
-        self.level = 1
-        self.stats = [2*self.level*randint(1,6)+randint(1,6), self.level/2*randint(1,6)+randint(1,6)/2, self.level*randint(1,6)+self.level]   #HP DP SP
+        self.stats = [2*level*randint(1, 6) + randint(1, 6), level/2*randint(
+            1, 6) + randint(1, 6)/2, level*randint(1, 6) + level]   #HP DP SP
         self.current_HP = self.stats[0]
 
 class Boss(Character):
 
-    def __init__(self, occupied_tile_position):
+    def __init__(self, occupied_tile_position, level):
         super().__init__(occupied_tile_position)
         self.level = 1
-        self.stats = [2*self.level*randint(1,6)+randint(1,6), self.level/2*randint(1,6)+randint(1,6)/2, self.level*randint(1,6)+self.level]   #HP DP SP
+        self.stats = [2*level*randint(1, 6) + randint(1, 6), level/2*randint(
+            1, 6) + randint(1, 6)/2, level*randint(1, 6) + level]   #HP DP SP
         self.current_HP = self.stats[0]
