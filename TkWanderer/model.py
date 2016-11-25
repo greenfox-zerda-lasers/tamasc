@@ -90,8 +90,8 @@ class Skeleton(Character):
 
     def __init__(self, occupied_tile_position, level):
         super().__init__(occupied_tile_position)
-        self.stats = [2*level*randint(1, 6) + randint(1, 6), level/2*randint(
-            1, 6) + randint(1, 6)/2, level*randint(1, 6) + level]   #HP DP SP
+        self.stats = [2.5*level*randint(1, 6) + randint(1, 6), level/1.5*randint(
+            1, 6) + randint(1, 6)/1.5, level*randint(1, 6) + 1.5*level]   #HP DP SP
         self.current_HP = self.stats[0]
 
 
@@ -100,6 +100,6 @@ class Boss(Character):
     def __init__(self, occupied_tile_position, level):
         super().__init__(occupied_tile_position)
         self.level = 1
-        self.stats = [2*level*randint(1, 6) + randint(1, 6), level/2*randint(
-            1, 6) + randint(1, 6)/2, level*randint(1, 6) + level]   #HP DP SP
+        self.stats = [3*level*randint(1, 6) + randint(1, 6), level*randint(
+            1, 6) + randint(1, 6)/2, level*randint(1, 6) + 2*level]   #HP DP SP
         self.current_HP = self.stats[0]

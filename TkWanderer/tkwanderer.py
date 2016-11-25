@@ -5,9 +5,10 @@ from random import randint, choice
 
 class Game():
     def __init__(self):
-        self.direction = 'right'
+        self.direction = 'down'
+        self.hero_stat_statusbar = None
         self.level = 1
-        self.view = View()
+        self.view = View(self.level)
         self.map = Map()
         self.hero = Hero(self.map.occupied_tile_position)
         self.game_start(self.level)
@@ -17,9 +18,12 @@ class Game():
         self.hero_move_number = 0
         self.map.next_level_map()
         self.view.display_map(self.map.occupied_tile_position)
+        self.view.statusbar_text(self.level, self.hero_stat_statusbar)
         self.hero.position = self.hero.randomize_position(self.map.occupied_tile_position)
         self.view.display_intro(self.level)
         self.generate_enemies(level)
+        self.hero.restore_health()
+        self.enemy_stat_statusbar = None
         self.input_event()
 
 # *********************Events**********************
@@ -52,6 +56,9 @@ class Game():
         self.view.display_hero(self.hero.position, self.direction, self.hero.isDead)
         self.generate_enemy_moves()
         self.view.display_enemies(self.enemy_list)
+        self.update_hero_status()
+        self.enemy_stat_statusbar = None
+        self.view.statusbar_text(self.level, self.hero_stat_statusbar)
         if self.hero_move_number > 0:
             self.start()
 
@@ -76,7 +83,9 @@ class Game():
         attacked_enemy.current_HP -= max(self.hero.stats[2] + randint(1,6) - attacked_enemy.stats[1], 0)
         self.hero.current_HP -= max(attacked_enemy.stats[2] + randint(1,6) - self.hero.stats[1], 0)
         self.view.display_attack(self.hero.position, attacked_enemy.position)
-        print('enemy:' + str(attacked_enemy.current_HP) + '  hero:' + str(self.hero.current_HP))
+        self.update_hero_status()
+        self.update_enemy_stats(attacked_enemy)
+        self.view.statusbar_text(self.level, self.hero_stat_statusbar, self.enemy_stat_statusbar)
         if attacked_enemy.current_HP <= 0:
             self.kill_enemy(attacked_enemy)
         if self.hero.current_HP <= 0:
@@ -86,6 +95,7 @@ class Game():
         self.map.occupied_tile_position[attacked_enemy.position[1]][attacked_enemy.position[0]] = 0
         self.enemy_list.remove(attacked_enemy)
         self.view.display_enemies(self.enemy_list)
+        self.view.display_kill(attacked_enemy.position)
         self.hero.level_up()
         if attacked_enemy.has_key == True:
             self.hero.has_key = True
@@ -111,11 +121,22 @@ class Game():
         self.view.master.destroy()
 
     def start(self):
-        self.view.delete_intro()
-        self.hero.restore_health()
+        self.view.delete_pictures()
         self.view.display_hero(self.hero.position, self.direction, self.hero.isDead)
         self.view.display_enemies(self.enemy_list)
 
+    def update_hero_status(self):
+        self.hero_stat_statusbar=self.hero.stats[:]
+        self.hero_stat_statusbar.append(self.hero.current_HP)
+        self.hero_stat_statusbar.append(self.hero.has_key)
+
+    def update_enemy_stats(self,attacked_enemy):
+        self.enemy_stat_statusbar=attacked_enemy.stats[:]
+        self.enemy_stat_statusbar.append(attacked_enemy.current_HP)
+        if type(attacked_enemy) == Boss:
+            self.enemy_stat_statusbar.append('boss')
+        else:
+            self.enemy_stat_statusbar.append('skeleton')
 
 # *****************Generate enemies*******************
     def generate_enemies(self, level):
