@@ -51,10 +51,3 @@ class Todo_model():
 
     def complete_task(self, task):
         self.todo_list[int(task)-1][1] = 'completed'
-
-
-# x = Todo_model("my_list")
-# print(x.todo_list)
-# x.add_task('fdsgdfgsdfg1')
-# x.add_task('fdsgdfgsdfg2')
-# x.list()

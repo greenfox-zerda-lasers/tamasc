@@ -101,5 +101,5 @@ class Boss(Character):
         super().__init__(occupied_tile_position)
         self.level = 1
         self.stats = [3*level*randint(1, 6) + randint(1, 6), level*randint(
-            1, 6) + randint(1, 6)/2, level*randint(1, 6) + 2*level]   #HP DP SP
+            1, 6) + randint(1, 6)/2, 2*level*randint(1, 6) + 2*level]   #HP DP SP
         self.current_HP = self.stats[0]

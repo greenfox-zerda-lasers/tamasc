@@ -8,7 +8,6 @@ class Todo():
     def __init__(self, list_name):
         self.model = Todo_model(list_name)
         self.view = Todo_view()
-
         self.get_args(sys.argv[1:])
 
     def complete_task(self, task):

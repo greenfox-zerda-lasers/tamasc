@@ -41,7 +41,8 @@ class Elevator():
             self.model.remove_people(self.check_input(input('\nLeaving people: ')))
             self.model.move_elevator(input('\nMove (u/d): '))
             self.view.waiting(pre_level, self.model.position)
-            self.view.show_state(self.model.number_of_levels, self.model.position, self.model.people_in_elevator)
+            self.view.show_state(self.model.number_of_levels,
+                self.model.position, self.model.people_in_elevator)
 
     def check_input(self, input_var):
         try:
