@@ -14,6 +14,8 @@ class View():
         self.floor = PhotoImage(file="floor.png")
         self.wall = PhotoImage(file="wall.png")
         self.game_over = PhotoImage(file="game_over.png")
+        self.spark = PhotoImage(file="spark.png")
+        self.skull = PhotoImage(file="skull.png")
 
 
     def display_map(self, wall_position):
@@ -56,13 +58,11 @@ class View():
         self.canvas.delete('skull')
 
     def display_attack(self, hero_position, enemy_position):
-        self.spark = PhotoImage(file="spark.png")
         x = (hero_position[0]+enemy_position[0])/2*72+38
         y = (hero_position[1]+enemy_position[1])/2*72+38
         self.canvas.create_image(x, y, anchor=CENTER, image=self.spark, tag='spark')
 
     def display_kill(self, enemy_position):
-        self.skull = PhotoImage(file="skull.png")
         x = enemy_position[0]*72+38
         y = enemy_position[1]*72+38
         self.canvas.create_image(x, y, anchor=CENTER, image=self.skull, tag='skull')

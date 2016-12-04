@@ -73,11 +73,7 @@ class Game():
         x_coord = self.hero.position[0]+self.hero.moves[self.direction][0]
         y_coord = self.hero.position[1]+self.hero.moves[self.direction][1]
         attack_coords = [x_coord, y_coord]
-        attacked_enemy = None
-        if len(self.enemy_list) != 0:
-            for enemy in self.enemy_list:
-                if enemy.position == attack_coords:
-                    attacked_enemy = enemy
+        attacked_enemy = self.check_attacked_enemy( attack_coords)
         if attacked_enemy == None:
             return
         attacked_enemy.current_HP -= max(self.hero.stats[2] + randint(1,6) - attacked_enemy.stats[1], 0)
@@ -90,6 +86,14 @@ class Game():
             self.kill_enemy(attacked_enemy)
         if self.hero.current_HP <= 0:
             self.game_over()
+
+    def check_attacked_enemy(self, attack_coords):
+        attacked_enemy = None
+        if len(self.enemy_list) != 0:
+            for enemy in self.enemy_list:
+                if enemy.position == attack_coords:
+                    attacked_enemy = enemy
+        return attacked_enemy
 
     def kill_enemy(self, attacked_enemy):
         self.map.occupied_tile_position[attacked_enemy.position[1]][attacked_enemy.position[0]] = 0
