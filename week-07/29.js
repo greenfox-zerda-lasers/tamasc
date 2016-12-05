@@ -8,3 +8,14 @@ var is_bonus = false;
 // if credits are smaller than 50,
 // and is_bonus is false, decrement ab by 1
 // if is_bonus is true, ab should remain the same
+
+
+if (credits > 49 && !is_bonus){
+  ab -= 2;
+} else if (credits < 50 && !is_bonus) {
+  ab -= 1;
+} else if (is_bonus) {
+  return;
+}
+
+console.log(ab);
