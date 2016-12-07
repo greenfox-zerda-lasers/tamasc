@@ -13,3 +13,8 @@ var students = [
 // create a function that counts the students that
 // has more than 4 candies
 
+function richGuys(inputList) {
+  return inputList.filter(function (e) {return e.candies > 4;}).length;
+}
+
+console.log(richGuys(students));
