@@ -23,8 +23,30 @@ button {
 .bigImage{
    width: 600px;
    height: 400px;
-   border: 3px solid #7da398;
+   border: 3px solid rgba(#7da398, 0.72);
    box-shadow: -1px -1px 10px 1px rgba(100, 110, 106, 0.5);
+   position: relative;
+}
+
+.bigImage .description {
+  width: 100%;
+  height: 120px;
+  background: rgba(19, 80, 80, 0.7);
+  opacity: 0;
+  text-align: center;
+  transition: opacity .6s ease;
+  color: rgb(215, 230, 230);
+  font-size: 20px;
+  font-family: sans-serif;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bigImage .description:hover {
+  opacity: 1;
 }
 
 .slideBar {
@@ -38,5 +60,22 @@ button {
    overflow: hidden;
    height: 70px;
    width: 600px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   justify-content: center;
+   align-items: center;
+}
 
+.thumbnails img {
+  margin: 3px;
+  height: 60px;
+  width: 90px;
+  border: 3px solid rgb(215, 237, 237);
+  border-radius: 1px;
+}
+
+.thumbnails .active {
+  border: 3px solid rgb(64, 77, 73);
+  border-radius: 1px;
 }
