@@ -1,7 +1,6 @@
 //  ***********************Generating jokes******************************
 
 var jokes = [];
-var object = [];
 
 
 $(document).ready(function() {
@@ -9,11 +8,15 @@ $(document).ready(function() {
     $.getJSON('http://api.icndb.com/jokes/random').then(function (e) {
        jokes.push(e.value.joke);
        if (jokes.length === 6){
-         console.log('getting jokes ready');
+
+        console.log('getting jokes ready');
        }
     });
   }
 });
+
+//  ***********************Generating data******************************
+var object = [];
 
 function generateData() {
    for (var i = 0; i < 6; i++){
@@ -26,14 +29,15 @@ function generateData() {
 }
 
 generateData();
+console.log(object);
+
 //  ***********************Display**********************************
 
+renderThumbnails();
 
-display();
 var description = document.querySelector('.descriptionText');
-console.log(description);
 
-function display(){
+function renderThumbnails(){
   for (var k = 0, l = object.length; k < l; k++) {
     var image = document.createElement('img');
     image.setAttribute('src', object[k].src);
