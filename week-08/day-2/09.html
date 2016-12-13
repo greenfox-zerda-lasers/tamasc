@@ -11,9 +11,12 @@
   </head>
   <body>
     <script>
-      function tibi(e) {
-        e.data.forEach(function (e) {
+      function tibi(json) {
+        json.data.forEach(function (e) {
           console.log(e.name);
+          var nameP = document.createElement('p');
+          nameP.innerHTML = e.name;
+          document.body.appendChild(nameP);
         });
       }
     </script>
