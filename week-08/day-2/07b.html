@@ -9,6 +9,17 @@
     <meta charset="utf-8">
   </head>
   <body>
-    
+    <div class="img"></div>
+    <script>
+    var image = document.createElement('img');
+    image.src = "https://c7.staticflickr.com/8/7562/15584243094_b268a32192_h.jpg";
+    image.style.transition = 'all 5s ease';
+    image.style.opacity = 0;
+    document.body.appendChild(image);
+    image.addEventListener('load', function() {
+      image.style.transform = 'rotate(36000deg)';
+      image.style.opacity = 1;
+    })
+    </script>
   </body>
 </html>
