@@ -6,6 +6,14 @@
     <meta charset="utf-8">
   </head>
   <body>
-
+    <h2 style='position: relative;'></h2>
+    <script>
+      window.addEventListener('mousemove', function(e) {
+        var h2 = document.getElementsByTagName('h2')[0]
+        h2.innerHTML = 'x: ' + e.clientX + ', y: ' + e.clientY;
+        h2.style.top = e.clientY + "px";
+        h2.style.left = e.clientX + "px";
+      })
+    </script>
   </body>
 </html>

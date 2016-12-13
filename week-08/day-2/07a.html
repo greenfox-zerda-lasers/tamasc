@@ -1,0 +1,28 @@
+<!-- //  Embed the following file to a HTML document:
+//   - https://www.flickr.com/photos/130463184@N04/15584243094 (use the embed feature)
+//   - watch the DOMContentLoaded event also and change the background color
+//  of the page to red while the image is loading
+//   - add an event to the window object that logs "loaded" the image is
+// downloaded and changes back the background color of the page to white -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <p>asdas</p>
+      <a data-flickr-embed="true"  href="https://www.flickr.com/photos/130463184@N04/15584243094" title="FotoHD.Weebly.com/Natura">
+        <img src="https://c7.staticflickr.com/8/7562/15584243094_b268a32192_h.jpg" width="1600" height="1000" alt="FotoHD.Weebly.com/Natura">
+      </a>
+    <p>sada</p>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.backgroundColor = "red";
+    })
+    window.addEventListener('load', function() {
+      document.body.style.backgroundColor = "white";
+    })
+    </script>
+  </body>
+</html>
