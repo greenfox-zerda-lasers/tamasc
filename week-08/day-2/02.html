@@ -1,0 +1,21 @@
+<!-- // create a function that starts a setTimeout with a 3 second delay.
+// - create a button with an event listener that can cancel the setTimeout -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button type="button" name="button">bUUUTTTTOOOn</button>
+    <script type="text/javascript">
+      var alert3 = setTimeout(function() {alert('I\'m delayed')}, 3000);
+      var cancelAlert = function() {
+        clearTimeout(alert3);
+      };
+      window.onload = alert3;
+      document.getElementsByName('button')[0].addEventListener('click', cancelAlert);
+    </script>
+  </body>
+</html>

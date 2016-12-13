@@ -1,0 +1,25 @@
+<!-- // set up a setInterval loop with 1.5 second delays
+// - log the mouse coordinates on each call -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script>
+      var x, y;
+      window.onload = startInterval;
+
+      window.addEventListener('mousemove', function(e) {
+        x = e.clientX;
+        y = e.clientY;
+      })
+
+      var startInterval = setInterval(function() {
+        console.log('x: ' + x + ', y: ' + y);
+      }, 1500);
+
+    </script>
+  </body>
+</html>
