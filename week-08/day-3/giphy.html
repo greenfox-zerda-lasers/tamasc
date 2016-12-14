@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>giphs</title>
+  </head>
+  <body>
+    <script>
+      var xhr = new XMLHttpRequest();
+      var rawData;
+      var images = [];
+      xhr.open('GET', 'http://api.giphy.com/v1/gifs/search?q=dog+funny&api_key=dc6zaTOxFJmzC&limit=16', true);
+      xhr.send();
+      xhr.onreadystatechange = function(e) {
+        if (xhr.readyState === XMLHttpRequest.DONE){
+          rawData = JSON.parse(xhr.response);
+          rawData.data.forEach(function(e) {
+            var imageData = [e.images.original.url, e.images.original_still.url];
+            images.push(imageData);
+          });
+          renderImages();
+        }
+      }
+      function renderImages() {
+        images.forEach(function(e) {
+          var img = document.createElement('img');
+          img.src = e[1];
+          img.gif = false;
+          img.addEventListener('click', function(){
+            if (!img.gif) {
+              img.src = e[0];
+              img.gif = true;
+            } else {
+              img.src = e[1];
+              img.gif = false;
+            }
+          })
+          document.body.appendChild(img);
+        })
+      }
+    </script>
+  </body>
+</html>
