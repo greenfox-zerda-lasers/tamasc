@@ -9,7 +9,7 @@
       var xhr = new XMLHttpRequest();
       var rawData;
       var images = [];
-      xhr.open('GET', 'http://api.giphy.com/v1/gifs/search?q=dog+funny&api_key=dc6zaTOxFJmzC&limit=16', true);
+      xhr.open('GET', 'http://api.giphy.com/v1/gifs/search?q=funny+dog&api_key=dc6zaTOxFJmzC&limit=16', true);
       xhr.send();
       xhr.onreadystatechange = function(e) {
         if (xhr.readyState === XMLHttpRequest.DONE){
