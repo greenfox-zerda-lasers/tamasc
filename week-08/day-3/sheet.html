@@ -28,12 +28,12 @@
 
       function sendData(data) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://sheetsu.com/apis/v1.0/7654fbe24554', true);
+        xhr.open('GET', 'https://sheetsu.com/apis/v1.0/e85c7d1dd5ef', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(data);
         xhr.onreadystatechange = function(rsp) {
           if (xhr.readyState === XMLHttpRequest.DONE){
-            console.log(xhr.response);
+            console.log(JSON.parse(xhr.response));
           }
         }
       }
