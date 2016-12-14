@@ -6,7 +6,52 @@
   </head>
   <body>
     <script>
-
+    var rawData;
+    var data = []
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=ecf5a7de7cc04cb2b96621ac0933ae26&q=apollo 11', true);
+    xhr.send();
+    xhr.onreadystatechange = function(e) {
+      if (xhr.readyState === XMLHttpRequest.DONE){
+        rawData = JSON.parse(xhr.response).response.docs;
+        rawData.forEach(function(e) {
+          var article = {
+            'headline': e.headline.main,
+            'snippet': e.snippet,
+            'publication': e.pub_date,
+            'web_url': e.web_url
+          }
+          data.push(article);
+        });
+        console.log(rawData);
+        renderArticles();
+      };
+    }
+    function renderArticles() {
+      document.body.style.display = 'flex';
+      document.body.style.flexWrap = 'wrap';
+      data.forEach(function(item) {
+        var article = document.createElement('article');
+        article.style.border = '1px solid black';
+        article.style.width = '300px';
+        article.style.margin = '10px';
+        var headline = document.createElement('h1');
+        var link = document.createElement('a');
+        link.href = item.web_url;
+        console.log(item.web_url);
+        link.innerHTML = item.headline;
+        headline.appendChild(link);
+        var snippet = document.createElement('p');
+        snippet.innerHTML = item.snippet;
+        var publication = document.createElement('p');
+        publication.innerHTML = item.publication;
+        publication.style.fontStyle = 'italic';
+        article.appendChild(headline, snippet, publication);
+        article.appendChild(snippet);
+        article.appendChild(publication);
+        document.body.appendChild(article);
+      })
+    }
     </script>
   </body>
 </html>
