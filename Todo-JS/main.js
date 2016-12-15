@@ -1,12 +1,7 @@
-'use strict'
+'use strict';
 
-document.querySelector('input[type=button]').addEventListener('click', function(){
-   Ajax.getTodos();
-});
 
-var Ajax = function() {
-
-};
+var Ajax = function() {};
 
 Ajax.prototype.getTodos = function() {
   var xhr = new XMLHttpRequest();
@@ -18,4 +13,10 @@ Ajax.prototype.getTodos = function() {
       console.log(JSON.parse(xhr.response));
     }
   };
-}
+};
+
+var ajax = new Ajax();
+
+document.querySelector('input[type=button]').addEventListener('click', function(){
+  ajax.getTodos();
+});

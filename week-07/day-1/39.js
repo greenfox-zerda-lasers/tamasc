@@ -8,4 +8,6 @@ function double_input(input){
   return input * 2;
 }
 
-console.log(double_input(ai));
+// console.log(double_input(ai));
+
+module.exports = double_input;

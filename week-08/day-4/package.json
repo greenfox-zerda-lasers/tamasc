@@ -1,0 +1,14 @@
+{
+  "name": "day-4",
+  "version": "1.0.0",
+  "description": "testing functions of week-07",
+  "main": "test.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
+}

@@ -11,3 +11,5 @@ function myFactorial(inputInt){
 }
 
 console.log(myFactorial(5));
+
+module.exports = myFactorial;

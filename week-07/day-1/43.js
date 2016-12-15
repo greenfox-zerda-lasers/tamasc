@@ -5,6 +5,11 @@ var numbers = [3, 4, 5, 6, 7];
 // from an array and returns a new array consisting
 // only the evens
 
-numbers = numbers.filter(function(item){if (item % 2 === 0){return item;}});
+function evenNums(array) {
+  return array.filter(function(item){
+    if (item % 2 === 0){return item;}
+  });
+}
 
-console.log(numbers);
+
+module.exports = evenNums;

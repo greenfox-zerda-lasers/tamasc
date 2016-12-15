@@ -9,3 +9,5 @@ function appendA(inputString){
 }
 
 console.log(appendA(aj))
+
+module.exports = appendA;

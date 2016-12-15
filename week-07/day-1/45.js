@@ -14,3 +14,5 @@ function shortestString(inputList){
 }
 
 console.log(shortestString(names));
+
+module.exports = shortestString;

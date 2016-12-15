@@ -12,3 +12,5 @@ function mySum(inputList){
 }
 
 console.log(mySum(numbers));
+
+module.exports = mySum;

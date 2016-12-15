@@ -15,3 +15,5 @@ function myMin(inputList){
 }
 
 console.log(myMin(numbers));
+
+module.exports = myMin;
