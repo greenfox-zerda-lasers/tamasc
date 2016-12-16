@@ -8,7 +8,6 @@ $(document).ready(function() {
     $.getJSON('http://api.icndb.com/jokes/random').then(function (e) {
        jokes.push(e.value.joke);
        if (jokes.length === 6){
-
         console.log('getting jokes ready');
        }
     });
@@ -29,7 +28,6 @@ function generateData() {
 }
 
 generateData();
-console.log(object);
 
 //  ***********************Display**********************************
 

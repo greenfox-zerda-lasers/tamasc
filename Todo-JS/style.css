@@ -15,7 +15,6 @@ body {
    display: flex;
    flex-direction: column;
    flex-wrap: nowrap;
-   transition: height 2s ease;
 }
 
 form {
@@ -73,10 +72,13 @@ li {
   position: relative;
   font-size: 24px;
   list-style-image: none;
-  line-height: 40px;
+  line-height: 20px;
   width: auto;
   color: #37404d;
   transition: all 2s ease;
+  padding-right: 80px;
+  padding-left: 2px;
+  margin: 20px 0 20px 0;
 }
 
 img {
@@ -85,12 +87,12 @@ img {
 }
 
 .delete {
-  right: 60px;
-  top: 7px;
+  right: 75px;
+  top: 0px;
 }
 
 .status {
-  right: 25px;
-  top: 6px;
+  right: 40px;
+  top: -2px;
   width: 32px;
 }

@@ -1,5 +1,6 @@
 'use strict';
 
+var ul = document.querySelector('ul');
 
 var open = function(request, url, dataToSend, callback) {
   var data;
@@ -11,8 +12,6 @@ var open = function(request, url, dataToSend, callback) {
     if (xhr.readyState === XMLHttpRequest.DONE){
       data = JSON.parse(xhr.response);
       callback(data);
-      // listTodos();
-
     }
   };
 };
@@ -24,7 +23,6 @@ var addTodo = function () {
   };
   open('POST','https://mysterious-dusk-8248.herokuapp.com/todos',
   JSON.stringify(todoItem), listTodos);
-  listTodos();
 };
 
 
@@ -34,14 +32,16 @@ var listTodos = function () {
   '', refresh);
 };
 
+
 var deleteTodo = function (id) {
   open('DELETE','https://mysterious-dusk-8248.herokuapp.com/todos'+'/'+id,
   '', listTodos);
 };
 
+
 var checkTodo = function (item) {
   var data = {
-    text: item.innerHTML,
+    text: item.innerText,
   };
   if (!item.className) {
     data.completed = true;
@@ -52,14 +52,16 @@ var checkTodo = function (item) {
   JSON.stringify(data), listTodos);
 };
 
+
 var refresh = function(data) {
-   document.querySelectorAll('li').forEach(function(item) {
-      ul.removeChild(item);
-   });
+      document.querySelector('ul').innerHTML = '';
    if (data) {
      data.reverse().forEach(function (e) {
+       if (!e.text) {
+         return;
+       }
        var item = document.createElement('li');
-       item.innerHTML = e.text;
+       item.innerText = e.text;
        item.id = e.id;
        var del = document.createElement('img');
        del.src = './delete.svg';
@@ -73,7 +75,7 @@ var refresh = function(data) {
        if (e.completed) {
          item.className = 'completed';
          status.src = './done.svg';
-       } else if(!e.completed) {
+       } else {
          status.src = './notdone.svg';
        }
        status.addEventListener('click', function() {
@@ -85,13 +87,14 @@ var refresh = function(data) {
    }
 };
 
-// ***************Functionality******************
-
 document.querySelector('input[type=button]').addEventListener('click', function(){
    addTodo();
    document.querySelector('form').reset();
 });
 
-var ul = document.querySelector('ul');
 
 window.onload = listTodos;
+
+setInterval(function() {
+  listTodos();
+}, 2000);

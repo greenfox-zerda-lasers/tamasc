@@ -14,6 +14,7 @@
       <img src="https://static.wixstatic.com/media/f4461b_78d16c1c65c74df583946d02911b4873~mv2_d_4161_2778_s_4_2.jpg/v1/fill/w_241,h_174,al_c,q_80,usm_0.66_1.00_0.01/f4461b_78d16c1c65c74df583946d02911b4873~mv2_d_4161_2778_s_4_2.webp">
     </div>
     <script>
+
       var circle = document.querySelector('.circle');
       circle.style.position = 'relative';
       circle.style.overflow = 'hidden';
@@ -23,9 +24,10 @@
       circle.style.top = yPos +'px';
       circle.style.left = xPos +'px';
       var image = document.querySelector('img');
-      image.style.width = '150%';
+      image.style.width = '140%';
+
       function move() {
-        xPos += 3.14/2;
+        xPos += 3.14/1;
         angle = xPos*3.6;
         if (xPos > 1100) {
           xPos = -200;
@@ -36,6 +38,7 @@
         circle.style.top = yPos + 'px';
         window.requestAnimationFrame(move);
       }
+
       window.requestAnimationFrame(move);
 
 
