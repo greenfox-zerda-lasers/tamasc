@@ -43,17 +43,66 @@ app.get('/todos', function a(req, res) {
 
 
 app.post('/todos', urlencodedParser, function(req, res) {
-  console.log(req.body);
   var completed = +Boolean(req.body.completed);
   connection.query('INSERT INTO todos (text, completed) VALUES ("'
     +req.body.text+'", "'+completed+'");',
-    function(err){
-      console.log(arguments);
+    function(err, insertParam){
       if(err) {
         console.log(err.toString());
         connection.end();
         return;
       }
-      res.json(req.body);
+      getTodoById(insertParam.insertId, function(rows) {
+        res.status(200).json(rows);
+      });
     });
 });
+
+app.put('/todos/:id', urlencodedParser, function(req, res) {
+  var completed = +Boolean(req.body.completed);
+  connection.query('UPDATE todos SET text="'+req.body.text+'", '
+    +'completed="'+completed+'" WHERE todos.id='+req.params.id+';',
+    function(err){
+      if(err) {
+        console.log(err.toString());
+        connection.end();
+        return;
+      }
+      getTodoById(req.params.id, function(rows) {
+        res.status(200).json(rows);
+      });
+    });
+});
+
+
+app.post('/todos', urlencodedParser, function(req, res) {
+  var completed = +Boolean(req.body.completed);
+  connection.query('INSERT INTO todos (text, completed) VALUES ("'
+    +req.body.text+'", "'+completed+'");',
+    function(err, insertParam){
+      if(err) {
+        console.log(err.toString());
+        connection.end();
+        return;
+      }
+      getTodoById(insertParam.insertId, function(rows) {
+        console.log(rows);
+      });
+      getTodoById(insertParam.insertId, function(rows) {
+        res.status(200).json(rows);
+      });
+    });
+});
+
+// ***********  helper functions *************
+
+function getTodoById(id, callback) {
+  connection.query('SELECT * FROM todos WHERE todos.id='+id+';', function(err,rows){
+    if(err) {
+      console.log(err.toString());
+      connection.end();
+      return;
+    }
+    callback(rows);
+  });
+}
