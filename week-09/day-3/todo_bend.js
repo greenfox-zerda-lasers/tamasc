@@ -8,12 +8,15 @@ var app = express();
 app.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+app.listen(3000);
+
+// ***********set up DB connection *************
 
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "alma",
-  database: "bookstore",
+  database: "todo",
 });
 
 connection.connect(function(error){
@@ -24,8 +27,11 @@ connection.connect(function(error){
   console.log('siker!');
 });
 
-app.get('/', function(req, res) {
-  connection.query('SELECT book_name FROM book_mast;', function(err,rows){
+// ***********  handling requests *************
+
+app.get('/todos', function a(req, res) {
+  connection.query('SELECT * FROM todos;', function(err,rows){
+    console.log(rows);
     if(err) {
       console.log(err.toString());
       connection.end();
@@ -35,17 +41,19 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/:bId', function(req, res) {
-  connection.query('SELECT book_name FROM book_mast WHERE book_id="BK'+req.params.bId+'";',
-    function(err,rows){
-      console.log('SELECT book_name FROM book_mast WHERE book_id="BK'+req.params.bId+'";');
+
+app.post('/todos', urlencodedParser, function(req, res) {
+  console.log(req.body);
+  var completed = +Boolean(req.body.completed);
+  connection.query('INSERT INTO todos (text, completed) VALUES ("'
+    +req.body.text+'", "'+completed+'");',
+    function(err){
+      console.log(arguments);
       if(err) {
         console.log(err.toString());
         connection.end();
         return;
       }
-      res.send(rows);
+      res.json(req.body);
     });
 });
-
-app.listen(3000);
