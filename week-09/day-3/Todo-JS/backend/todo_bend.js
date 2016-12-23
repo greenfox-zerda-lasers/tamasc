@@ -1,14 +1,14 @@
 'use strict';
 
+var cors = require('cors');
 var express = require('express');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 
 var app = express();
 app.use(bodyParser.json());
+app.use(cors());
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-app.listen(3000);
 
 // ***********set up DB connection *************
 
@@ -106,3 +106,5 @@ function getTodoById(id, res, callback) {
     callback(rows);
   });
 }
+
+app.listen(3000);
