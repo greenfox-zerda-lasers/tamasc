@@ -3,6 +3,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: inset 1px -1px 0 #fff;
+  color: #444;
 }
 
 section {
@@ -14,7 +16,7 @@ section {
 }
 
 #info {
-  min-width: 400px;
+  min-width: 500px;
   height: 200px;
   display: flex;
   flex-direction: row;
@@ -26,7 +28,7 @@ section {
 }
 
 #control {
-  min-width: 400px;
+  min-width: 500px;
   height: 70px;
 }
 
@@ -44,4 +46,18 @@ audio {
 div {
   border: 1px solid rgb(141, 148, 144);
   min-height: 50px;
+}
+
+tbody:hover td {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+
+tbody:hover tr:hover td {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+}
+
+tr:nth-child(odd) td {
+	background: #f1f1f1;
 }
