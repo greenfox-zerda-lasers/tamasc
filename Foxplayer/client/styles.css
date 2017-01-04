@@ -1,0 +1,114 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  color: #444;
+  background-color:rgb(243, 241, 245);
+  border: 1px solid rgb(157, 159, 157);
+  border-radius: 3px;
+  margin-top: 60px;
+  max-width: 700px;
+}
+
+section {
+  border: 1px solid rgb(141, 148, 144);
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  min-width: 200px;
+}
+
+#info {
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#info > div {
+  width: 330px;
+}
+
+#playlist {
+  overflow: scroll;
+}
+
+#control {
+  width: 97%;
+  height: 55px;
+}
+
+div > img {
+  width: 75px;
+  margin: 10px;
+}
+
+audio {
+  position: relative;
+  bottom: -10px;
+  width: 100%;
+}
+
+audio::-webkit-media-controls-play-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  padding-left: 10px;
+}
+
+div {
+  border: 1px solid rgb(141, 148, 144);
+  min-height: auto;
+}
+
+#current-song {
+  font-family: 'Kumar One', cursive;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tbody {
+  font-family: 'Dosis', sans-serif;
+  font-size: 15px;
+}
+
+tbody:hover td {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+
+tr:nth-child(2n) {
+  width: 100%;
+}
+
+tbody:hover tr:hover td {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+}
+
+tr:nth-child(odd) td {
+	background: #fff6f6;
+}
+
+.active td{
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
