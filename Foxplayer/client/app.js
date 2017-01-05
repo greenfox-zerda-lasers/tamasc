@@ -7,23 +7,16 @@ var app = (function () {
   var audio = document.getElementsByTagName('audio')[0];
   var imgPP = document.getElementById('pp'); //play-pause button
   var imgArtist = document.getElementById('imgArtist');
+
   // **********functions**************
   var fireApp = function () {
     ajax.getSongList(addEventsToButtons);
+    ajax.getPlayLists();
     addEventsToButtons();
-    // addAudioEvents();
+    addAudioEvents();
   };
 
   // *********Helper functions***********
-  var renderHelper = function (child, text, parent) { //creates a HTML element and appends it to the given parent
-    text.forEach(function (t) {
-      var childElement = document.createElement(child);
-      childElement.innerText = t;
-      parent.appendChild(childElement);
-    });
-    return parent;
-  };
-
   var secToDuration = function (sumSec) {
     var minutes = Math.floor(sumSec / 60);
     var seconds = Math.floor(sumSec % 60);
@@ -81,31 +74,62 @@ var app = (function () {
       setAudioSource(counter);
       setActive(counter);
     });
-
     var backward = document.querySelector('#backward');
     backward.addEventListener('click', function () {
       counter = counterValidator(counter - 1);
       setAudioSource(counter);
       setActive(counter);
     });
-
     var playPause = document.querySelector('#play-pause');
     playPause.addEventListener('click', togglePlayPause)
   };
 
   var addAudioEvents = function () {
     audio.addEventListener("ended", function () {
-      if (!this.paused) this.pause();
       document.querySelector('#forward').click();
       audio.play();
     });
   };
 
   // **************View****************
+  var renderHelper = function (child, text, parent) { //creates a HTML element and appends it to the given parent
+    text.forEach(function (t) {
+      var childElement = document.createElement(child);
+      childElement.innerText = t;
+      parent.appendChild(childElement);
+    });
+    return parent;
+  };
+
+  // var renderTable = function (items, tableClass, callback) {
+  //   var row;
+  //   var table = document.querySelector(tableClass);
+  //   items.forEach(function (item) {
+  //     row = document.createElement('tr');
+  //     row.id = 'list' + list.id;
+  //
+  //   })
+  // }
+
+  var renderListItems = function (lists) {
+    var row;
+    var table = document.querySelector('.playlists');
+    lists.forEach(function (list) {
+      row = document.createElement('tr');
+      row.id = 'list-' + list.id;
+      row.addEventListener('click', function () {
+        setActive(counter);
+        audio.src = this.src;
+      });
+      row = renderHelper('td', [list.id, list.name], row);
+      table.appendChild(row);
+    })
+  }
+
   var renderSongList = function (songs) {
     var row;
+    var table = document.querySelector('.tracks');
     songs.forEach(function (song) {
-      var table = document.querySelector('.tracks');
       row = document.createElement('tr');
       row.src = song.src;
       row.artist = song.artist;
@@ -129,12 +153,15 @@ var app = (function () {
   return {
     fire: fireApp,
     renderSongList: renderSongList,
+    renderListItems: renderListItems
   };
 
 })();
 
 
 var ajax = (function () {
+  var songList = [];
+
   var open = function (request, url, dataToSend, callback) {
     var data;
     var xhr = new XMLHttpRequest();
@@ -149,8 +176,17 @@ var ajax = (function () {
     };
   };
 
+  var getPlayLists = function () {
+    var renderPlayLists = function (data) {
+      console.log(data);
+      app.renderListItems(data);
+    };
+    open('GET', 'http://localhost:3000/playlist', '', renderPlayLists);
+  };
+
   var getSongList = function () {
     var renderSongList = function (data) {
+      songList = data;
       app.renderSongList(data.sort(function (a, b) {
         return a.id - b.id;
       }));
@@ -166,12 +202,14 @@ var ajax = (function () {
       }
     };
     var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist +
-      '&api_key=ee125f318852fc7d1c2f4e21458a0035&format=json'
+      '&api_key=ee125f318852fc7d1c2f4e21458a0035&format=json';
     open('GET', url, '', changeImg)
   };
 
   return {
+    songList: songList,
     getSongList: getSongList,
+    getPlayLists: getPlayLists,
     getArtistInfo: getArtistInfo
   };
 

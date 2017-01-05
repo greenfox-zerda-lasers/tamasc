@@ -45,7 +45,7 @@ app.get('/playlist-tracks/:playlist_id', function (req, res) {
 });
 
 app.get('/playlist', function (req, res) {
-  res.json(data);
+  res.json(data.playlists);
 });
 
 app.post('/playlist', function (req, res) {
