@@ -1,6 +1,6 @@
 'use strict';
 
-let data = require('../data/data2.json');
+let data = require('../data/data.json');
 
 const cors = require('cors');
 const express = require('express');
@@ -58,7 +58,6 @@ app.delete('/playlist/:id', function (req, res) {
   console.log("dsfdf");
   res.json(data);
 });
-
 
 app.post('/playlist-tracks/:playlist_id', function (req, res) {
   res.json(data);

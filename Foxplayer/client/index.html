@@ -13,11 +13,28 @@
   <div class="wrapper">
     <section id="info">
       <div>
-        <img src="https://raw.githubusercontent.com/greenfox-academy/teaching-materials/master/javascript/project-music-player/img/foxplayer.png" alt="cute fog logo">
+        <div>
+          <img src="https://raw.githubusercontent.com/greenfox-academy/teaching-materials/master/javascript/project-music-player/img/foxplayer.png" alt="cute fog logo">
+        </div>
+        <table>
+          <thead>
+            <th>#</th>
+            <th>Playlists</th>
+          </thead>
+          <tbody class="playlists">
+            <tr>
+              <td>0</tdr>
+              <td>All tracks</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div>
         <div id="current-song">
-          <img src="https://raw.githubusercontent.com/greenfox-academy/teaching-materials/master/javascript/project-music-player/img/music-placeholder.png">
+          <img id="imgArtist", src="https://raw.githubusercontent.com/greenfox-academy/teaching-materials/master/javascript/project-music-player/img/music-placeholder.png">
+          <div>
+            <p class="song-info"></p>
+          </div>
         </div>
         <div id="playlist">
           <table>
@@ -26,7 +43,7 @@
               <th>Track</th>
               <th>Min</th>
             </thead>
-            <tbody></tbody>
+            <tbody class="tracks"></tbody>
           </table>
         </div>
       </div>
@@ -37,7 +54,7 @@
         <button type="button" id="play-pause"><img id="pp" class="play" src="./img/play.svg"></button>
         <button type="button" id="forward"><img src="./img/forward.svg"></button>
       </div>
-      <audio src="" controls autobuffer="true" autoplay="true">
+      <audio src="" controls autoplay>
         Your browser does not support the <code>audio</code> element.
       </audio>
 
