@@ -44,5 +44,17 @@
        "name": "Sok minden mas",
        "tracks": [1, 2, 6, 4]
     }
+  ],
+  "playlists": [
+    {
+      "id": 1,
+      "name": "Bence kommunista induloi",
+      "tracks": [1, 3, 5]
+    },
+    {
+      "id": 2,
+      "name": "Sok minden mas",
+      "tracks": [1, 2, 6, 4]
+    }
   ]
 }

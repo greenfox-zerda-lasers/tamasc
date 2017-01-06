@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: stretch;
   color: #444;
-  background-color:rgb(176, 218, 159);
+  background-color: #92D1AF;
   border: 1px solid rgb(157, 159, 157);
   border-radius: 3px;
   margin-top: 60px;
@@ -19,12 +19,19 @@ body {
 
 section {
   border: 1px solid rgb(141, 148, 144);
+  background-color: #F5F5F5;
   flex-grow: 1;
   flex-shrink: 1;
   display: flex;
   flex-direction: row;
   margin: 10px;
   min-width: 200px;
+}
+
+section > div {
+  border: 1px solid rgb(141, 148, 144);
+  background-color: #F5F5F5;
+  border-radius: 1px;
 }
 
 #info {
@@ -38,14 +45,19 @@ section {
   width: 320px;
 }
 
-#playlist {
+#playlist, .playList-table {
   overflow-y: scroll;
-  height: 190px;
+  height: 210px;
+  margin-top: 15px;
+}
+
+.playList-table tr {
+  line-height: 24px;
 }
 
 #control {
   width: 97%;
-  height: 55px;
+  height: 35px;
 }
 
 div > img {
@@ -57,7 +69,6 @@ audio {
   position: relative;
   bottom: -1px;
   width: 100%;
-  background-color: rgb(37, 36, 37);
 }
 
 audio::-webkit-media-controls-play-button {
@@ -69,16 +80,16 @@ audio::-webkit-media-controls-current-time-display {
 }
 
 div {
-  border: 1px solid rgb(141, 148, 144);
   min-height: auto;
 }
 
-#current-song {
+#current-song, #current-playlist {
   font-family: 'Kumar One', cursive;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   height: 100px;
+  border-bottom: 1px solid rgb(141, 148, 144);
 }
 
 p {
@@ -92,7 +103,7 @@ table {
 
 tbody {
   font-family: 'Dosis', sans-serif;
-  font-size: 19px;
+  font-size: 16px;
 
 }
 
@@ -102,7 +113,7 @@ tbody:hover td {
 }
 
 td:nth-child(2n) {
-  width: 100%;
+  width: 93%;
 }
 
 tbody:hover tr:hover td {
@@ -111,7 +122,7 @@ tbody:hover tr:hover td {
 }
 
 tr:nth-child(odd) td {
-	background: #fff6f6;
+	background: #92D1AF;
 }
 
 .active td, .active-list td{
@@ -128,6 +139,12 @@ tr:nth-child(odd) td {
 button {
   height: 33px;
   box-shadow: none;
+  background-color: #FAFAFA;
+}
+
+tr p {
+  margin: 3px;
+  padding: 0px;
 }
 
 .pause {

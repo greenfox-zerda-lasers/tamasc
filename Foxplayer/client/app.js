@@ -37,7 +37,8 @@ var app = (function () {
   };
 
   var setAudioSource = function (counter) {
-    audio.src = document.getElementById('' + counter).src;
+    var current = document.querySelectorAll('.tracks tr')[counter]
+    audio.src = current.src;
   }
 
   var setActive = function (counter) {
@@ -77,8 +78,8 @@ var app = (function () {
     };
   };
 
-  var filterSongs = function (songList, filterArray) {  // complex filter
-     console.log(songList,'>>>', filterArray);
+  var filterSongs = function (songList, filterArray) {
+    // console.log(songList, filterArray);      // complex filter
      return songList.filter( function (song) {
         return filterArray.indexOf(song.id) !== -1;
      });
@@ -111,12 +112,22 @@ var app = (function () {
   };
 
   // **************View****************
+
+  // var removeSong = function
+
   var renderHelper = function (child, text, parent) { //creates a HTML element and appends it to the given parent
     text.forEach(function (t) {
       var childElement = document.createElement(child);
       childElement.innerText = t;
       parent.appendChild(childElement);
     });
+    var deleteIcon = document.createElement('p');
+    deleteIcon.innerHTML = '  &#10005';
+    parent.appendChild(deleteIcon);
+    deleteIcon.addEventListener('click', function () {
+      // console.log(this.parentElement.id);
+      ajax.deleteSong(this.parentElement.id);
+    })
     return parent;
   };
 
@@ -150,6 +161,7 @@ var app = (function () {
          var currentPlayList = ajax.playLists[0].filter(function (item) {
             return item.id == row.originId;
          });
+         console.log(currentPlayList);
          renderSongList(filterSongs(ajax.allSongs[0], currentPlayList[0].tracks));
       });
       row = renderHelper('td', textArray, row);
@@ -164,7 +176,7 @@ var app = (function () {
       row.src = song.src;
       row.artist = song.artist;
       row.addEventListener('click', function () {
-         counter = parseInt(counterValidator(this.id));
+         counter = parseInt(this.id);
          setActive(counter);
          audio.src = this.src;
       });
@@ -208,12 +220,31 @@ var ajax = (function () {
     };
   };
 
+  // var deleteSong = function (id) {
+  //   var remove = function (data) {
+  //     playLists[0][id].tracks = data.tracks;
+  //     app.renderSongList(app.filterSongs(allSongs, data.tracks));
+  //   };
+  //   var playListId = document.querySelector('.active-list').id.slice(5);
+  //   if (playListId == 0) {return}
+  //   open('DELETE', 'http://localhost:3001/playlist-tracks/'+playListId+'/'+id, '', app.removeSong);
+  // }
+
   var getPlayLists = function () {
     var renderPlayLists = function (data) {
-      app.renderListItems(data);
-       playLists.push(data);
+      playLists.push(data);
+      data.forEach(function (item, index) {
+        var tracksArr = item.tracks.split(',');
+        var tracksIntArr = [];
+        tracksArr.forEach(function (item) {
+          tracksIntArr.push(parseInt(item));
+        })
+        playLists[0][index]['tracks'] = tracksIntArr;
+      })
+      app.renderListItems(playLists[0]);
+      console.log(playLists);
     };
-    open('GET', 'http://localhost:3000/playlist', '', renderPlayLists);
+    open('GET', 'http://localhost:3001/playlist', '', renderPlayLists);
   };
 
   var getSongList = function () {
@@ -226,7 +257,7 @@ var ajax = (function () {
       app.renderSongList(songList);
       return songList;
     };
-    open('GET', 'http://localhost:3000/playlist-tracks', '', renderSongList)
+    open('GET', 'http://localhost:3001/playlist-tracks', '', renderSongList)
   };
 
   var getArtistInfo = function (artist) {
@@ -246,7 +277,8 @@ var ajax = (function () {
     playLists: playLists,
     getSongList: getSongList,
     getPlayLists: getPlayLists,
-    getArtistInfo: getArtistInfo
+    getArtistInfo: getArtistInfo,
+    // deleteSong: deleteSong
   };
 
 })();
