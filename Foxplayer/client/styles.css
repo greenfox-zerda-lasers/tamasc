@@ -114,7 +114,7 @@ tr:nth-child(odd) td {
 	background: #fff6f6;
 }
 
-.active td{
+.active td, .active-list td{
   font-weight: bold;
 }
 

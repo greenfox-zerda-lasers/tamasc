@@ -23,6 +23,26 @@
     {
       "id": 6,
       "url": "E:/ZENE/Trêsporcento - Quadro/Trêsporcento - Quadro - 06 Aqui Que Nem Um Louco.mp3"
+   },
+   {
+     "id": 7,
+     "url": "F:/mű/204. Mius/05 - Sunday Night Blues.mp3"
+   },
+   {
+     "id": 8,
+     "url": "F:/mű/204. Mius/12 - Solitude.mp3"
+   }
+  ],
+  "playlists": [
+    {
+       "id": 1,
+       "name": "Bence kommunista induloi",
+       "tracks": [1, 3, 5]
+    },
+    {
+       "id": 2,
+       "name": "Sok minden mas",
+       "tracks": [1, 2, 6, 4]
     }
   ]
 }

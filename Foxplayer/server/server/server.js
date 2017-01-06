@@ -1,6 +1,6 @@
 'use strict';
 
-let data = require('../data/data.json');
+let data = require('../data/data2.json');
 
 const cors = require('cors');
 const express = require('express');

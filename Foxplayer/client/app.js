@@ -53,16 +53,35 @@ var app = (function () {
     renderCurrentSong(currentSongText, currentSong.artist[0]);
   };
 
+  var setActivePlayList = function (id) {
+     var activeList = document.querySelector('.active-list');
+     if (activeList) {
+      activeList.classList.remove('active-list');
+     }
+     document.getElementById(id).classList.toggle('active-list');
+     counter = 1;
+     audio.src = '';
+     imgPP.src = './img/play.svg';
+     imgPP.classList = ['play'];
+  }
+
   var togglePlayPause = function () {
     if (!audio.paused) {
       audio.pause();
       imgPP.src = './img/play.svg';
       imgPP.classList = ['play'];
     } else {
-      audio.play()
+      audio.play();
       imgPP.src = './img/pause.svg';
       imgPP.classList = ['pause'];
     };
+  };
+
+  var filterSongs = function (songList, filterArray) {  // complex filter
+     console.log(songList,'>>>', filterArray);
+     return songList.filter( function (song) {
+        return filterArray.indexOf(song.id) !== -1;
+     });
   };
 
   // *************Events***************
@@ -101,47 +120,58 @@ var app = (function () {
     return parent;
   };
 
-  // var renderTable = function (items, tableClass, callback) {
-  //   var row;
-  //   var table = document.querySelector(tableClass);
-  //   items.forEach(function (item) {
-  //     row = document.createElement('tr');
-  //     row.id = 'list' + list.id;
-  //
-  //   })
-  // }
-
-  var renderListItems = function (lists) {
+  var renderTable = function (items, tableClass, callback) {   //renders tables with the given parameters
     var row;
-    var table = document.querySelector('.playlists');
-    lists.forEach(function (list) {
+    var table = document.querySelector(tableClass);
+    items.forEach(function (item, index) {
       row = document.createElement('tr');
-      row.id = 'list-' + list.id;
-      row.addEventListener('click', function () {
-        setActive(counter);
-        audio.src = this.src;
-      });
-      row = renderHelper('td', [list.id, list.name], row);
+      var firstTd = document.createElement('td');
+      firstTd.innerText = index+1;
+      row.appendChild(firstTd);
+      callback(item, row);
       table.appendChild(row);
     })
   }
 
+  var renderListItems = function (lists) {
+    var allTracksRow = document.getElementById('list-0');
+    allTracksRow.addEventListener('click', function () {
+      setActivePlayList(allTracksRow.id);
+      document.querySelector('.tracks').innerHTML = '';
+      renderSongList(ajax.allSongs[0]);
+    });
+    var creator = function (list, row) {
+      var textArray = [list.name];
+      row.id = 'list-' + list.id;
+      row.originId = list.id;
+      row.addEventListener('click', function () {
+         setActivePlayList(this.id);
+         document.querySelector('.tracks').innerHTML = '';
+         var currentPlayList = ajax.playLists[0].filter(function (item) {
+            return item.id == row.originId;
+         });
+         renderSongList(filterSongs(ajax.allSongs[0], currentPlayList[0].tracks));
+      });
+      row = renderHelper('td', textArray, row);
+    };
+    renderTable(lists, '.playlists', creator);
+  }
+
   var renderSongList = function (songs) {
-    var row;
-    var table = document.querySelector('.tracks');
-    songs.forEach(function (song) {
-      row = document.createElement('tr');
+    var creator = function (song, row) {
+      var textArray = [song.artist[0] +
+        ' - ' + song.title, secToDuration(song.duration)];
       row.src = song.src;
       row.artist = song.artist;
       row.addEventListener('click', function () {
-        counter = parseInt(counterValidator(this.id));
-        setActive(counter);
-        audio.src = this.src;
+         counter = parseInt(counterValidator(this.id));
+         setActive(counter);
+         audio.src = this.src;
       });
-      row = renderHelper('td', [song.id, song.artist[0] + ' - ' + song.title, secToDuration(song.duration)], row);
+      row = renderHelper('td', textArray, row);
       row.id = song.id;
-      table.appendChild(row);
-    });
+    };
+    renderTable(songs, '.tracks', creator);
   };
 
   var renderCurrentSong = function (currentSongText, artist) {
@@ -151,6 +181,7 @@ var app = (function () {
   };
 
   return {
+    filterSongs: filterSongs,
     fire: fireApp,
     renderSongList: renderSongList,
     renderListItems: renderListItems
@@ -160,7 +191,8 @@ var app = (function () {
 
 
 var ajax = (function () {
-  var songList = [];
+  var allSongs = [];
+  var playLists = [];
 
   var open = function (request, url, dataToSend, callback) {
     var data;
@@ -178,18 +210,21 @@ var ajax = (function () {
 
   var getPlayLists = function () {
     var renderPlayLists = function (data) {
-      console.log(data);
       app.renderListItems(data);
+       playLists.push(data);
     };
     open('GET', 'http://localhost:3000/playlist', '', renderPlayLists);
   };
 
   var getSongList = function () {
     var renderSongList = function (data) {
-      songList = data;
-      app.renderSongList(data.sort(function (a, b) {
+      var songList = data.sort(function (a, b) {
         return a.id - b.id;
-      }));
+      });
+      allSongs.push(songList);
+      allSongs = allSongs[0];
+      app.renderSongList(songList);
+      return songList;
     };
     open('GET', 'http://localhost:3000/playlist-tracks', '', renderSongList)
   };
@@ -207,12 +242,14 @@ var ajax = (function () {
   };
 
   return {
-    songList: songList,
+    allSongs: allSongs,
+    playLists: playLists,
     getSongList: getSongList,
     getPlayLists: getPlayLists,
     getArtistInfo: getArtistInfo
   };
 
 })();
+
 
 app.fire();
