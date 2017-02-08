@@ -30,7 +30,8 @@ function QuickUnion(N) {
   };
 
   function getGroups() {
-    return ;
+    let IdArrSet = new Set(this.IdArr); // creates a set -> eliminating duplicated elements
+    return [...IdArrSet];               // spreads elements of the set into an array
   };
 
   return {
@@ -48,3 +49,4 @@ o.unite(2, 4);
 o.unite(1, 4);
 console.log(o.IdArr);
 console.log(o.find(1, 3));
+console.log(o.getGroups());
