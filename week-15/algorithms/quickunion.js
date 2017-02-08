@@ -25,12 +25,12 @@ function QuickUnion(N) {
     this.IdArr[root1] = root2;
   };
 
-  function find() {
-    return;
+  function find(nodeId1, nodeId2) {
+    return this.IdArr[nodeId1] == this.IdArr[nodeId2];
   };
 
   function getGroups() {
-    return;
+    return ;
   };
 
   return {
@@ -45,4 +45,6 @@ function QuickUnion(N) {
 let o = new QuickUnion(5);
 console.log(o.IdArr);
 o.unite(2, 4);
+o.unite(1, 4);
 console.log(o.IdArr);
+console.log(o.find(1, 3));
