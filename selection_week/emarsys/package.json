@@ -1,0 +1,17 @@
+{
+  "name": "emarsys_homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "emarsys_nyaral.js",
+  "dependencies": {
+    "tape": "^4.6.3"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}

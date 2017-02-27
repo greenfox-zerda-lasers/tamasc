@@ -1,10 +1,12 @@
+'use strict'
+
 function Nyaralas() {
   const args = [...arguments];
   let nodes = [];
   let path = [];
 
   // Create data structure (nodes) from arguments (eg: 'a => b' --> [a, b], 'a' --> [a, a],)
-  setNodes = function () {
+  function setNodes () {
     args.forEach((e) =>  {
       if (e.search(/^\w+\s*(=>)\s*\w+$/) !== -1) {
         const node = [e.match(/\w+$/)[0], e.match(/^\w+/)[0]];
@@ -13,11 +15,11 @@ function Nyaralas() {
         const node = e.match(/^\w+/)[0];
         nodes.push([node, node]);
       }
-    })
-  };
+    });
+  }
 
   // Find first node, which has no dependency
-  findFirstNode = function (array) {
+  function findFirstNode (array) {
     let firstNode = [];
     array.forEach((e) => {
       let count = 0;
@@ -26,23 +28,23 @@ function Nyaralas() {
         if (p[1] === e[0]) {
           count++;
         }
-      })
+      });
       if (count === 0) {
         firstNode = e;
       }
     });
     return firstNode;
-  };
+  }
 
   // Removing a node elemenet from an array
-  filterArr = function (node, array) {
-    return arraz.filter((e) => {
+  function filterArr (node, array) {
+    return array.filter((e) => {
       return e !== node;
     });
-  };
+  }
 
   // Finding the next node in the array
-  findNextNode = function (node, array) {
+  function findNextNode (node, array) {
     let nextNode = [];
     for (let i = 0, l = array.length; i < l; i++) {
       if (array[i][0] === array[i][1] && node[1] === array[i][0]) {  // first case, finding a nondirected node next to
@@ -57,10 +59,10 @@ function Nyaralas() {
       });
     }
     return nextNode || [];
-  };
+  }
 
   // Recursive function, which pushes nodes into the path variable
-  getPath = function (initNode, nodeArr) {
+  function getPath (initNode, nodeArr) {
     if (initNode.length === 0) {                                    // basecase
       return;
     }
@@ -70,7 +72,7 @@ function Nyaralas() {
     getPath(nextNode, nextFilteredArray);                           // gets called with the next node, and the next node array
   };
 
-  init = function () {
+  function init () {
     setNodes();
     const firstNode = findFirstNode(nodes);
     const firstFilteredNodes = filterArr(firstNode, nodes);
@@ -79,16 +81,14 @@ function Nyaralas() {
 
   // the only public function showing the path
   this.showPath = function () {
+    if (path.length === 0) {
+      throw new Error('circular reference');
+    }
     let pathSet = new Set(path);                                     // creates a set -> eliminating duplicated elements
     return [...pathSet];                                             // spreads elements of the set into an array
   }
 
   init();
+};
 
-  return {
-    showPath: this.showPath
-  }
-}
-
-let horvat = new Nyaralas('4 => 3', '1', '4', '2 => 1', '2 => 1', '3 => 2', '7', '6', '6', '6 => 5', '5 => 7');
-console.log(horvat.showPath());
+module.exports = Nyaralas;
