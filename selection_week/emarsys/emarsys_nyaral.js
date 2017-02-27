@@ -10,7 +10,7 @@ function Nyaralas() {
         this.nodes.push(node);
       } else {
         const node = e.match(/^\w+/)[0];
-        this.nodes.push([node]);
+        this.nodes.push([node, node]);
       }
     })
   };
@@ -18,89 +18,66 @@ function Nyaralas() {
   this.findFirstNode = function (array) {
     let firstNode = [];
     array.forEach((e) => {
-      let nodeCount = 0;
-      array.filter((l) => {return l !== l}).forEach((p) => {
-        if (p[0] === e[e.length -1]) {
+      let count = 0;
+      let filteredArray = this.filterArr(e, array);
+      filteredArray.forEach((p) => {
+        if (p[1] === e[0]) {
           count++;
         }
       })
-      if (nodeCount < 1) {
+      if (count === 0) {
         firstNode = e;
       }
     });
     return firstNode;
   };
 
-  this.filterArr = function (node) {
-    return this.nodes.filter((e) => {
-      return e !== this.nodes[3]
+  this.filterArr = function (node, arr) {
+    return arr.filter((e) => {
+      return e !== node;
     });
-  };
-
-  this.findNonDirectedNode = function(node, array) {
-    let nextNode = [];
-    array.forEach((e) => {
-      let currentNode = (node.length > 1) ? node[1] : node[0];
-      if (currentNode === e[0] && e.length === 1) {
-        nextNode = e;
-      }
-    });
-    return nextNode;
-  };
-
-  this.findIndependentNode = function (node, array) {
-    return array.find((e) => {
-      return e.length === 1;
-    });
-  };
-
-  this.findDirectedNode = function (node, array) {
-    let nextNode = [];
-    array.forEach((e) => {
-      if (e.length > 1 && node[node.length -1] === e[0]) {
-        nextNode = e;
-      }
-    });
-    return nextNode;
   };
 
   this.findNextNode = function (node, array) {
-    let nextNode = this.findNonDirectedNode(node, array);
-    if (!nextNode[0]) {
-      nextNode = this.findDirectedNode(node, array);
+    let nextNode = [];
+    array.forEach((e) => {
+      if (e[0] === e[1] && node[1] === e[0]) {
+        // console.log('jeee node: ', node, ' nextNode: ', e);
+        return 'asdas';
+      } else if (node[1] === e[0]){
+        nextNode = e;
+      }
+    });
+    if (nextNode.length === 0) {
+      nextNode = array.find((e) => {
+        return e[0] === e[1];
+      });
     }
-    if (!nextNode[0]) {
-      nextNode = this.findIndependentNode(node, array);
-    }
-      return nextNode;
+    // console.log('node: ', node, ' nextNode: ', nextNode);
+    return nextNode || [];
   };
 
   this.getPath = function (initNode, nodeArr) {
-    console.log('node: ',initNode,'arr: ', nodeArr);
-    this.path.push(...initNode);
-    console.log('path: ', this.path);
-    if (!initNode[0] || nodeArr.length === 0) {
+    if (initNode.length === 0) {
       console.log('return');
       return;
     }
+    this.path.push(...initNode);
     let nextNode = this.findNextNode(initNode, nodeArr);
-    let filteredArr = nodeArr.filter((e) => {
-      return e !== nextNode;
-    });
-    console.log('nextNode: ', nextNode);
-    this.getPath(nextNode, filteredArr);
+    console.log(initNode, nextNode);
+    let nextFilteredArray = this.filterArr(nextNode, nodeArr);
+    this.getPath(nextNode, nextFilteredArray);
   };
 
   this.init = function () {
     this.setNodes();
     const firstNode = this.findFirstNode(this.nodes);
-    const firsFilteredNodes = this.filterArr(firstNode);
-    this.getPath(firstNode, firsFilteredNodes);
-    this.path()
+    const firstFilteredNodes = this.filterArr(firstNode, this.nodes);
+    this.getPath(firstNode, firstFilteredNodes);
   }
 
   this.init();
 }
 
-let horvat = new Nyaralas('b => a', 'x', 'v', 'v => x', 'a => v','d' , 'b', 'b', 'm => b');
+let horvat = new Nyaralas('b => a', 'x', 'v', 'v => x', 'a => v', 'm');
 console.log(horvat.path);
