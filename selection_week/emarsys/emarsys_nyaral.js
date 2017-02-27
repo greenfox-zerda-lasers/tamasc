@@ -40,20 +40,19 @@ function Nyaralas() {
 
   this.findNextNode = function (node, array) {
     let nextNode = [];
-    array.forEach((e) => {
-      if (e[0] === e[1] && node[1] === e[0]) {
-        // console.log('jeee node: ', node, ' nextNode: ', e);
-        return 'asdas';
-      } else if (node[1] === e[0]){
-        nextNode = e;
+    for (let i = 0, l = array.length; i < l; i++) {
+      if (array[i][0] === array[i][1] && node[1] === array[i][0]) {
+        console.log(array[i]);
+        return array[i];
+      } else if (node[1] === array[i][0]) {
+        nextNode = array[i];
       }
-    });
+    }
     if (nextNode.length === 0) {
       nextNode = array.find((e) => {
         return e[0] === e[1];
       });
     }
-    // console.log('node: ', node, ' nextNode: ', nextNode);
     return nextNode || [];
   };
 
@@ -64,7 +63,7 @@ function Nyaralas() {
     }
     this.path.push(...initNode);
     let nextNode = this.findNextNode(initNode, nodeArr);
-    console.log(initNode, nextNode);
+    // console.log(initNode, nextNode);
     let nextFilteredArray = this.filterArr(nextNode, nodeArr);
     this.getPath(nextNode, nextFilteredArray);
   };
