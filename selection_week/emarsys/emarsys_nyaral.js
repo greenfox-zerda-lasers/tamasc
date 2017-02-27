@@ -14,10 +14,28 @@ function Nyaralas() {
       }
     })
   };
-  // 
-  // this.findFirstNode(array) {
-  //   array.
-  // }
+
+  this.findFirstNode = function (array) {
+    let firstNode = [];
+    array.forEach((e) => {
+      let nodeCount = 0;
+      array.filter((l) => {return l !== l}).forEach((p) => {
+        if (p[0] === e[e.length -1]) {
+          count++;
+        }
+      })
+      if (nodeCount < 1) {
+        firstNode = e;
+      }
+    });
+    return firstNode;
+  };
+
+  this.filterArr = function (node) {
+    return this.nodes.filter((e) => {
+      return e !== this.nodes[3]
+    });
+  };
 
   this.findNonDirectedNode = function(node, array) {
     let nextNode = [];
@@ -75,16 +93,14 @@ function Nyaralas() {
 
   this.init = function () {
     this.setNodes();
-    this.getPath(this.nodes[3], this.nodes.filter((e) => {
-      return e !== this.nodes[3];
-    }));
+    const firstNode = this.findFirstNode(this.nodes);
+    const firsFilteredNodes = this.filterArr(firstNode);
+    this.getPath(firstNode, firsFilteredNodes);
+    this.path()
   }
 
   this.init();
 }
 
 let horvat = new Nyaralas('b => a', 'x', 'v', 'v => x', 'a => v','d' , 'b', 'b', 'm => b');
-// console.log(horvat.path);
-// console.log(horvat.findDirectedNode(['v'], horvat.nodes));
-// console.log(horvat.findIndependentNode(['v'], horvat.nodes));
-// console.log(horvat.findDuplicatedNode(['v'], horvat.nodes));
+console.log(horvat.path);
