@@ -13,8 +13,8 @@ function Nyaralas() {
         nodes.push(node);
       } else {
         const node = e.match(/^\w+/)[0];
-        nodes.push([node, node]);
-      }
+        nodes.unshift([node, node]);                            // unshift the nondirected nodes, therefore
+      }                                                         // they will asserted at the end --> put the at the end of the path
     });
   }
 
