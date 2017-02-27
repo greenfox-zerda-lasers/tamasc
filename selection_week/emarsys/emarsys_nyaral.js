@@ -14,26 +14,32 @@ function Nyaralas() {
       }
     })
   };
+  // 
+  // this.findFirstNode(array) {
+  //   array.
+  // }
 
-  this.findNonDirectedNode = function (node, array) {
+  this.findNonDirectedNode = function(node, array) {
     let nextNode = [];
     array.forEach((e) => {
-      if (e.length === 1 && e[0] === node) {
+      let currentNode = (node.length > 1) ? node[1] : node[0];
+      if (currentNode === e[0] && e.length === 1) {
         nextNode = e;
       }
     });
-    if (!nextNode) {
-      return array.find((e) => {
-        return e.length === 1;
-      });
-    }
     return nextNode;
+  };
+
+  this.findIndependentNode = function (node, array) {
+    return array.find((e) => {
+      return e.length === 1;
+    });
   };
 
   this.findDirectedNode = function (node, array) {
     let nextNode = [];
     array.forEach((e) => {
-      if (e.length > 1) {
+      if (e.length > 1 && node[node.length -1] === e[0]) {
         nextNode = e;
       }
     });
@@ -41,22 +47,21 @@ function Nyaralas() {
   };
 
   this.findNextNode = function (node, array) {
-    if (array.some(e) => {return (e.length === 1 && !!node[1] && node[1] === e[0])}) { // non directed node, which is 
-      return
+    let nextNode = this.findNonDirectedNode(node, array);
+    if (!nextNode[0]) {
+      nextNode = this.findDirectedNode(node, array);
     }
-    if (this.findDirectedNode(node, array).length === 2) {
-      return this.findDirectedNode(node, array);
-    } else if (this.findNonDirectedNode(node, array).length === 1) {
-      return this.findNonDirectedNode(node, array);
-    } else {
-      return;
+    if (!nextNode[0]) {
+      nextNode = this.findIndependentNode(node, array);
     }
+      return nextNode;
   };
 
   this.getPath = function (initNode, nodeArr) {
     console.log('node: ',initNode,'arr: ', nodeArr);
-    console.log('path', this.path);
-    if (!initNode || nodeArr.length === 0) {
+    this.path.push(...initNode);
+    console.log('path: ', this.path);
+    if (!initNode[0] || nodeArr.length === 0) {
       console.log('return');
       return;
     }
@@ -64,13 +69,12 @@ function Nyaralas() {
     let filteredArr = nodeArr.filter((e) => {
       return e !== nextNode;
     });
-    this.path.push(...initNode);
+    console.log('nextNode: ', nextNode);
     this.getPath(nextNode, filteredArr);
   };
 
   this.init = function () {
     this.setNodes();
-    this.temp = this.nodes;
     this.getPath(this.nodes[3], this.nodes.filter((e) => {
       return e !== this.nodes[3];
     }));
@@ -79,9 +83,8 @@ function Nyaralas() {
   this.init();
 }
 
-let horvat = new Nyaralas('b => a', 'x', 'v', 'v => x', 'a => v');
+let horvat = new Nyaralas('b => a', 'x', 'v', 'v => x', 'a => v','d' , 'b', 'b', 'm => b');
 // console.log(horvat.path);
-
-// console.log(horvat.path);
-// console.log(horvat.findDirectedNode('v', horvat.nodes));
-// console.log(horvat.findNonDirectedNode('v', horvat.nodes));
+// console.log(horvat.findDirectedNode(['v'], horvat.nodes));
+// console.log(horvat.findIndependentNode(['v'], horvat.nodes));
+// console.log(horvat.findDuplicatedNode(['v'], horvat.nodes));
