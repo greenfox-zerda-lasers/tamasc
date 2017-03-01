@@ -1,11 +1,11 @@
 'use strict'
 
-function Nyaralas() {
+function Holiday() {
   const args = [...arguments];
   let nodes = [];
   let path = [];
 
-  // Create data structure (nodes) from arguments (eg: 'a => b' --> [a, b], 'a' --> [a, a],)
+  // Create data structure (nodes) from arguments (eg: 'a => b' --> [b, a], 'a' --> [a, a],)
   function setNodes () {
     args.forEach((e) =>  {
       if (e.search(/^\w+\s*(=>)\s*\w+$/) !== -1) {
@@ -13,8 +13,8 @@ function Nyaralas() {
         nodes.push(node);
       } else {
         const node = e.match(/^\w+/)[0];
-        nodes.unshift([node, node]);                            // unshift the nondirected nodes, therefore
-      }                                                         // they will asserted at the end --> put the at the end of the path
+        nodes.unshift([node, node]);
+      }
     });
   }
 
@@ -43,6 +43,12 @@ function Nyaralas() {
     });
   }
 
+  function findIndependentNode(node, array) {
+    return array.find((e) => {
+      return e[0] === e[1];
+    });
+  }
+
   // Finding the next node in the array
   function findNextNode (node, array) {
     let nextNode = [];
@@ -53,10 +59,8 @@ function Nyaralas() {
         nextNode = array[i];                                         // given node
       }
     }
-    if (nextNode.length === 0) {                                     // last case, finding independent nodes
-      nextNode = array.find((e) => {
-        return e[0] === e[1];
-      });
+    if (nextNode.length === 0) {
+      nextNode = findIndependentNode(node, array);
     }
     return nextNode || [];
   }
@@ -68,27 +72,31 @@ function Nyaralas() {
     }
     path.push(...initNode);
     let nextNode = findNextNode(initNode, nodeArr);
-    let nextFilteredArray = filterArr(nextNode, nodeArr);           // removing from the node array the next node
-    getPath(nextNode, nextFilteredArray);                           // gets called with the next node, and the next node array
-  };
+    let nextFilteredArray = filterArr(nextNode, nodeArr);
+    getPath(nextNode, nextFilteredArray);
+  }
+
+  function removeDuplicates (nodeArray) {
+    let nodeSet = new Set(nodeArray);                                // creates a set -> eliminating duplicated elements
+    return [...nodeSet];                                             // spreads elements of the set into an array
+  }
 
   function init () {
     setNodes();
     const firstNode = findFirstNode(nodes);
     const firstFilteredNodes = filterArr(firstNode, nodes);
     getPath(firstNode, firstFilteredNodes);
-  }
+  };
 
   // the only public function showing the path
   this.showPath = function () {
     if (path.length === 0) {
       throw new Error('circular reference');
     }
-    let pathSet = new Set(path);                                     // creates a set -> eliminating duplicated elements
-    return [...pathSet];                                             // spreads elements of the set into an array
-  }
+    return removeDuplicates(path);
+  };
 
   init();
 };
 
-module.exports = Nyaralas;
+module.exports = Holiday;
